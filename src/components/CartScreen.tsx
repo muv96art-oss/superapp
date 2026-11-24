@@ -67,6 +67,7 @@ export function CartScreen({
   const deliveryFree = method === 'delivery' && goodsTotal >= FREE_DELIVERY
   const deliveryCost = method === 'delivery' && !deliveryFree ? DELIVERY_FEE : 0
   const payable = goodsTotal + deliveryCost
+  const itemCount = lines.reduce((sum, line) => sum + line.quantity, 0)
   const empty = lines.length === 0
 
   if (empty) {
@@ -144,30 +145,43 @@ export function CartScreen({
           </ul>
 
         <div className="mt-8 flex flex-col gap-6" data-node-id="525:34965">
-          <div className="flex flex-col gap-4">
-            <div className="flex gap-2" data-name="Method_Tabs">
+          {/* Content — Figma 525:34966: surface/secondary, p-16, r-24, gap-16 */}
+          <div
+            className="flex w-full flex-col gap-4 rounded-[24px] bg-surface-secondary p-4"
+            data-node-id="525:34966"
+            data-name="Content"
+          >
+            <div className="flex w-full gap-2" data-node-id="525:34967" data-name="Method_Tabs">
               <button
                 type="button"
                 onClick={() => setMethod('pickup')}
                 aria-pressed={method === 'pickup'}
-                className={`flex min-w-0 flex-1 items-center gap-3 rounded-xl border-2 bg-surface-secondary px-4 py-2 ${
+                className={`flex min-w-0 flex-1 items-center gap-3 rounded-xl border-2 bg-bg-base px-4 py-2 ${
                   method === 'pickup' ? 'border-fill-brand' : 'border-transparent'
                 }`}
+                data-node-id="525:34968"
+                data-name="Tab/deliveryOption"
               >
-                <img alt="" width={24} height={24} src={assets.cartBox} />
-                <span className="text-[16px] font-semibold leading-6 text-text-primary">Самовывоз</span>
+                <img alt="" width={24} height={24} src={assets.cartBox} className="size-6 shrink-0" />
+                <span className="text-[14px] font-semibold leading-5 text-text-primary">
+                  Самовывоз
+                </span>
               </button>
               <button
                 type="button"
                 onClick={() => setMethod('delivery')}
                 aria-pressed={method === 'delivery'}
-                className={`relative flex min-w-0 flex-1 items-center gap-3 rounded-xl border-2 bg-surface-secondary px-4 py-2 ${
+                className={`relative flex min-w-0 flex-1 items-center gap-3 rounded-xl border-2 bg-bg-base px-4 py-2 ${
                   method === 'delivery' ? 'border-fill-brand' : 'border-transparent'
                 }`}
+                data-node-id="525:34969"
+                data-name="Tab/deliveryOption"
               >
-                <img alt="" width={24} height={24} src={assets.cartTruck} />
-                <span className="text-[16px] font-semibold leading-6 text-text-primary">Доставка</span>
-                <span className="absolute -top-1 -right-1.5 rounded-xl bg-fill-brand px-1.5 py-1 text-[11px] leading-[14px] text-white">
+                <img alt="" width={24} height={24} src={assets.cartTruck} className="size-6 shrink-0" />
+                <span className="text-[14px] font-semibold leading-5 text-text-primary">
+                  Доставка
+                </span>
+                <span className="absolute -top-1 -right-[5.5px] rounded-xl bg-fill-brand px-1.5 py-1 text-[11px] font-normal leading-[14px] text-white">
                   +7,0 р
                 </span>
               </button>
@@ -177,20 +191,28 @@ export function CartScreen({
               type="button"
               onClick={() => onToast('Выберите пункт')}
               className="flex w-full items-center gap-4 text-left"
+              data-node-id="525:34970"
             >
               <span className="flex min-w-0 flex-1 flex-col gap-1">
-                <span className="text-[16px] font-semibold leading-6 text-text-primary">Пункт самовывоза</span>
-                <span className="text-[14px] font-medium leading-5 text-text-secondary">Выберите пункт</span>
+                <span className="text-[16px] font-semibold leading-6 text-text-primary">
+                  Пункт самовывоза
+                </span>
+                <span className="text-[14px] font-medium leading-5 text-text-secondary">
+                  Выберите пункт
+                </span>
               </span>
-              <img alt="" width={24} height={24} src={assets.cartChevron} />
+              <img alt="" width={24} height={24} src={assets.cartChevron} className="size-6 shrink-0" />
             </button>
 
-            <label className="flex flex-col gap-1">
-              <span className="text-[16px] font-semibold leading-6 text-text-primary">Комментарий к заказу</span>
+            <label className="flex w-full flex-col gap-1" data-node-id="525:34985">
+              <span className="text-[16px] font-semibold leading-6 text-text-primary">
+                Комментарий к заказу
+              </span>
               <input
                 value={comment}
                 onChange={(event) => setComment(event.target.value)}
-                className="h-[54px] w-full rounded-2xl border border-[#cdd0d5] bg-bg-base px-3 text-[16px] leading-5 text-text-secondary outline-none focus-visible:border-fill-brand"
+                placeholder="Оставить у двери, домофон не работает"
+                className="h-[54px] w-full rounded-2xl border border-border-tertiary bg-bg-base px-3 py-2 text-[16px] font-normal leading-5 text-text-secondary outline-none placeholder:text-text-secondary focus-visible:border-fill-brand"
               />
             </label>
           </div>
@@ -200,24 +222,29 @@ export function CartScreen({
           <button
             type="button"
             onClick={() => onToast('Замена товара')}
-            className="flex w-full items-center gap-4 text-left"
+            className="flex w-full items-center gap-4 px-4 text-left"
+            data-node-id="525:34996"
           >
             <span className="flex min-w-0 flex-1 flex-col gap-0.5">
-              <span className="text-[16px] font-semibold leading-6 text-text-primary">Замена товара</span>
+              <span className="text-[16px] font-semibold leading-6 text-text-primary">
+                Замена товара
+              </span>
               <span className="text-[14px] font-medium leading-5 text-text-secondary">
                 Доставить доступное количество товара
               </span>
             </span>
-            <img alt="" width={24} height={24} src={assets.cartChevron} />
+            <img alt="" width={24} height={24} src={assets.cartChevron} className="size-6 shrink-0" />
           </button>
 
           <CartSummary
             payment={paymentSummary}
             payable={payable}
-            goodsTotal={listTotal}
+            itemCount={itemCount}
+            goodsTotal={goodsTotal}
             discount={discount}
             showDelivery={method === 'delivery'}
             deliveryCost={deliveryCost}
+            deliveryFree={deliveryFree || method === 'pickup'}
           />
         </div>
         <SiteFooter className="-mx-4" onOpenCatalog={onOpenCatalog} />
@@ -464,65 +491,104 @@ function formatMoney(value: number) {
 function CartSummary({
   payment,
   payable,
+  itemCount,
   goodsTotal,
   discount,
   showDelivery,
   deliveryCost,
+  deliveryFree,
 }: {
   payment: PaymentSummary
   payable: number
+  itemCount: number
   goodsTotal: number
   discount: number
   showDelivery: boolean
   deliveryCost: number
+  deliveryFree: boolean
 }) {
   const installment = payment.kind === 'installment'
-  const title = installment ? 'Ежемесячный платёж' : 'Итого'
-  const titleAmount = installment ? payment.monthly : payable
+  const itemsLabel = `${itemCount} ${pluralGoods(itemCount)}`
+
+  if (installment) {
+    return (
+      <section
+        className="flex flex-col gap-3 rounded-2xl border border-border-tertiary bg-surface-secondary p-4"
+        data-node-id="525:35003"
+        data-name="Order Summary"
+      >
+        <h2 className="font-montserrat text-[24px] font-bold leading-[30px] tracking-[-0.24px] text-text-primary">
+          Ежемесячный платёж
+        </h2>
+        <div className="flex flex-col gap-2 text-[14px] font-normal leading-5">
+          <SummaryRow label="Сумма оплаты частями" value={formatMoney(payment.total)} />
+          <SummaryRow label="В месяц" value={formatMoney(payment.monthly)} valueTone="primary" />
+        </div>
+      </section>
+    )
+  }
 
   return (
     <section
-      className="flex flex-col gap-3 rounded-2xl bg-surface-secondary p-4"
-      data-node-id="590:8636"
-      data-name="Details - Summary"
+      className="flex w-full flex-col gap-1 rounded-2xl border border-border-tertiary bg-surface-secondary p-4"
+      data-node-id="525:35003"
+      data-name="Order Summary"
     >
-      <div className="flex items-center gap-3 text-[15px] font-bold leading-5 tracking-[0.15px] text-text-primary">
-        <h2 className="min-w-0 flex-1">{title}</h2>
-        <p className="shrink-0 whitespace-nowrap">{formatMoney(titleAmount)}</p>
-      </div>
-      <div className="h-[0.5px] w-full bg-[#cdd0d5]" />
-      <div className="flex flex-col gap-1">
-        {installment ? (
-          <SummaryRow label="Сумма оплаты частями" value={formatMoney(payment.total)} />
-        ) : (
-          <>
-            <SummaryRow label="Стоимость товаров" value={formatMoney(goodsTotal)} />
-            {showDelivery ? <SummaryRow label="Стоимость доставки" value={formatMoney(deliveryCost)} /> : null}
-            {discount > 0 ? (
-              <SummaryRow label="Скидка" value={`-${formatMoney(discount)}`} tone="discount" />
-            ) : null}
-          </>
-        )}
+      <div className="flex w-full flex-col gap-4" data-node-id="525:35006" data-name="Content">
+        <h2 className="w-full font-montserrat text-[24px] font-bold leading-[30px] tracking-[-0.24px] text-text-primary">
+          Итого
+        </h2>
+        <div className="flex w-full flex-col gap-2 text-[14px] font-normal leading-5">
+          <SummaryRow label={itemsLabel} value={formatMoney(goodsTotal)} valueTone="primary" />
+          {showDelivery || deliveryFree ? (
+            <SummaryRow
+              label="Доставка"
+              value={deliveryFree || deliveryCost <= 0 ? 'Бесплатно' : formatMoney(deliveryCost)}
+              valueTone={deliveryFree || deliveryCost <= 0 ? 'free' : 'primary'}
+            />
+          ) : null}
+          {discount > 0 ? (
+            <SummaryRow label="Скидка" value={`-${formatMoney(discount)}`} valueTone="discount" />
+          ) : null}
+        </div>
+        <div className="h-px w-full bg-[#e0e0e0]" data-node-id="525:35015" data-name="Divider" />
+        <div className="flex w-full items-start justify-between text-[16px] leading-6 text-text-primary">
+          <p className="font-normal">К оплате</p>
+          <p className="font-bold whitespace-nowrap">{formatMoney(payable)}</p>
+        </div>
       </div>
     </section>
   )
 }
 
+function pluralGoods(count: number) {
+  const mod10 = count % 10
+  const mod100 = count % 100
+  if (mod10 === 1 && mod100 !== 11) return 'товар'
+  if (mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14)) return 'товара'
+  return 'товаров'
+}
+
 function SummaryRow({
   label,
   value,
-  tone = 'default',
+  valueTone = 'primary',
 }: {
   label: string
   value: string
-  tone?: 'default' | 'discount'
+  valueTone?: 'primary' | 'free' | 'discount'
 }) {
+  const valueClass =
+    valueTone === 'free'
+      ? 'text-fill-accent-green-loud'
+      : valueTone === 'discount'
+        ? 'text-static-orange'
+        : 'text-text-primary'
+
   return (
-    <div className="flex items-center gap-3 text-[13px] font-medium leading-4">
-      <span className="min-w-0 flex-1 text-text-secondary">{label}</span>
-      <span className={`shrink-0 whitespace-nowrap ${tone === 'discount' ? 'text-static-orange' : 'text-text-secondary'}`}>
-        {value}
-      </span>
+    <div className="flex w-full items-start justify-between overflow-hidden">
+      <span className="shrink-0 text-text-secondary">{label}</span>
+      <span className={`shrink-0 whitespace-nowrap ${valueClass}`}>{value}</span>
     </div>
   )
 }

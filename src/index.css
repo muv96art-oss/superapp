@@ -17,6 +17,9 @@
   --color-fill-brand: #1b74fd;
   --color-fill-brand-loud: #0b2e65;
   --color-fill-accent-red: #b0262b;
+  /* fill/accentgreenloud — Figma cart summary free delivery */
+  --color-fill-accent-green-loud: #328e02;
+  --color-border-tertiary: #cdd0d5;
   --color-fill-secondary: #d1e3ff;
   --color-orange-50: #fffaf2;
   --color-search-bg: rgba(249, 249, 250, 0.92);

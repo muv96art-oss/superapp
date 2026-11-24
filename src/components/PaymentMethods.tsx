@@ -62,13 +62,18 @@ export function PaymentMethods({
   }
 
   return (
-    <section className="flex w-full flex-col gap-4 rounded-[20px] bg-bg-base" data-node-id="532:37315" data-name="Details - Payment">
+    <section
+      className="flex w-full flex-col rounded-[24px] bg-surface-secondary p-4"
+      data-node-id="532:37315"
+      data-name="Details - Payment"
+    >
+      <div className="flex w-full flex-col gap-4 rounded-[20px]">
       <h2 className="text-[16px] font-semibold leading-6 text-text-primary">
         Способы оплаты
       </h2>
       <div className="flex w-full gap-1" role="group" aria-label="Когда оплатить">
         <TimingChip label="При получении" selected={timing === 'receipt'} className="w-[110px] shrink-0" onClick={() => setTiming('receipt')} />
-        <TimingChip label="Сразу" selected={timing === 'now'} className="w-[97px] shrink-0" onClick={() => setTiming('now')} />
+        <TimingChip label="Сразу" selected={timing === 'now'} className="w-[110px] shrink-0" onClick={() => setTiming('now')} />
         <TimingChip label="Оплатить частями" selected={timing === 'parts'} className="min-w-0 flex-1" onClick={() => setTiming('parts')} />
       </div>
       <div className="flex w-full gap-1 overflow-hidden" role="group" aria-label="Способ оплаты">
@@ -120,6 +125,7 @@ export function PaymentMethods({
           <InstallmentForm months={installmentMonths} onMonths={setInstallmentMonths} />
         </div>
       </div>
+      </div>
       {sheetOpen ? <AddCardSheet onClose={() => setSheetOpen(false)} onAdd={confirmCard} /> : null}
     </section>
   )
@@ -129,7 +135,7 @@ const INSTALLMENT_MONTHS = [1, 2, 3]
 
 function InstallmentForm({ months, onMonths }: { months: number; onMonths: (value: number) => void }) {
   return (
-    <div className="flex w-full flex-col gap-4 rounded-2xl bg-surface-secondary p-4" data-node-id="532:39973">
+    <div className="flex w-full flex-col gap-4 rounded-2xl bg-bg-base p-4" data-node-id="532:39973">
       <h3 className="font-montserrat text-[20px] font-bold leading-[27px] tracking-[-0.4px] text-text-primary opacity-80">
         Условия оплаты
       </h3>
@@ -201,11 +207,11 @@ function TimingChip({
       type="button"
       aria-pressed={selected}
       onClick={onClick}
-      className={`flex items-center justify-center overflow-hidden rounded-lg bg-surface-secondary px-3 py-2 ${className} ${
-        selected ? 'outline outline-[1.5px] -outline-offset-[1.5px] outline-fill-brand' : ''
+      className={`flex h-9 items-center justify-center overflow-hidden rounded-lg border-[1.5px] bg-bg-base px-3 py-2 ${className} ${
+        selected ? 'border-fill-brand' : 'border-transparent'
       }`}
     >
-      <span className="w-full text-center text-[11px] font-semibold leading-[14px] tracking-[0.11px] text-text-primary">
+      <span className="w-full truncate text-center text-[11px] font-semibold leading-[14px] tracking-[0.11px] text-text-primary">
         {label}
       </span>
     </button>
@@ -228,12 +234,12 @@ function MethodChip({
       type="button"
       aria-pressed={selected}
       onClick={onClick}
-      className={`flex h-16 w-[120px] shrink-0 flex-col items-start justify-end gap-1.5 overflow-hidden rounded-xl bg-surface-secondary p-3 ${
-        selected ? 'outline outline-2 -outline-offset-2 outline-fill-brand' : ''
+      className={`flex h-[76px] w-[132px] shrink-0 flex-col items-start justify-end gap-1.5 overflow-hidden rounded-xl border-2 bg-bg-base p-3 ${
+        selected ? 'border-fill-brand' : 'border-transparent'
       }`}
     >
-      <img alt="" width={20} height={20} src={icon} />
-      <span className="w-full text-left text-[11px] font-semibold leading-[14px] tracking-[0.11px] whitespace-nowrap text-text-primary">
+      <img alt="" width={20} height={20} src={icon} className="size-5 shrink-0" />
+      <span className="w-full truncate text-left text-[11px] font-semibold leading-[14px] tracking-[0.11px] text-text-primary">
         {label}
       </span>
     </button>
