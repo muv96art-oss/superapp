@@ -36,8 +36,9 @@ export function BalancePremiumBanner({
         </p>
       </div>
 
+      {/* Figma 698:30148 — left 230 on 327 → ~7px past right; pin to right for fluid width */}
       <div
-        className="pointer-events-none absolute left-[230px] top-[3px] flex size-[104px] items-center justify-center"
+        className="pointer-events-none absolute top-[3px] right-[-7px] flex size-[104px] items-center justify-center"
         data-node-id="698:30148"
       >
         <img

@@ -219,9 +219,9 @@ export function BalanceScreen({
           data-node-id="679:9843"
           data-name="Card"
         >
-          {/* Card above sheet — Figma 687:6573 overlap: info y=131 vs card bottom ~215 */}
+          {/* Sheet over card — Figma 687:6573: info y=131, card bottom ~215, Halva y=32 in info */}
           <div
-            className="relative z-10 flex flex-col items-center px-0 pt-6"
+            className="relative z-0 flex flex-col items-center px-0 pt-6"
             data-node-id="679:9844"
             data-name="card"
           >
@@ -296,8 +296,11 @@ export function BalanceScreen({
           </div>
 
           <div
-            className={`relative z-0 flex flex-col items-center gap-6 rounded-tl-[36px] rounded-tr-[36px] bg-surface-secondary px-6 pb-8 shadow-[0px_-3px_14px_rgba(0,0,0,0.07)] transition-[margin,padding] duration-300 ease-out motion-reduce:transition-none ${
-              sheetExpanded ? '-mt-6 pt-8' : '-mt-[84px] pt-[100px]'
+            className={`relative z-10 flex flex-col items-center gap-6 rounded-tl-[36px] rounded-tr-[36px] bg-surface-secondary px-6 pb-8 shadow-[0px_-3px_14px_rgba(0,0,0,0.07)] transition-[margin,padding] duration-300 ease-out motion-reduce:transition-none ${
+              sheetExpanded
+                ? '-mt-6 pt-8'
+                : // Figma 687:6573: info y=131, Halva pt=32; fluid h=(100%-64px)*187/311 → -84 on 375
+                  'mt-[calc(103px-(100%-64px)*187/311)] pt-8'
             }`}
             data-node-id="679:9859"
             data-name="info"

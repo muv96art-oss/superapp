@@ -58,11 +58,12 @@ Web-прототип Super App (банк + маркет). Визуальный �
 ## Open work
 - [x] Три бага CardApplication/chrome + bank badge icons — pushed `28303d5` / HANDOFF `c74656d`.
 - [x] Cart Method_Tabs gap-2 (8px) + section gap-4 (16px) — pushed (Observed 2026-11-24).
-- [x] Balance card overlap + open animation + CardApplication 44px inset — pushed (Observed 2026-11-24):
-  - `CardApplicationScreen`: card wrapper `px-[28px]` (+ parent `px-4` → **44px** к краям, Figma `716:12796` x=44).
-  - `BalanceScreen`: карта `z-10`; info sheet `-mt-[84px] pt-[100px]` collapsed / `-mt-6 pt-8` expanded (Figma `687:6573` overlap); Tabs через `grid-rows` transition 300ms.
-- [ ] **Следующий шаг:** визуальный ok на проде (Balance virtual overlap + expand animation + CardApplication scale + Cart gaps).
-- [ ] Визуальный ok / правки Premium БШ (`716:12084`).
+- [x] Balance card overlap + open animation + CardApplication 44px inset — pushed `bb48397` (Observed 2026-11-24).
+- [x] Fluid Balance overlap + Premium crown pin + sheet stacking — pushed (Observed 2026-11-24):
+  - `BalancePremiumBanner`: crown `right-[-7px]` — Figma `698:30148`.
+  - `BalanceScreen` collapsed: sheet `z-10` над картой `z-0`; `pt-8` (Halva y=32 в `687:6573`); fluid `mt-[calc(103px-(100%-64px)*187/311)]`.
+  - Visual ok Observed vs Figma `716:11024` / `687:6573`.
+- [ ] **Следующий шаг:** визуальный ok / правки Premium БШ (`716:12084`).
 - [ ] Визуальный ok Balance issue → Home Variant4 и 4 состояний Balance.
 - [ ] Halva hero (default): финальный ok.
 - [ ] Опционально: пиксель-сверка `MarketTransitionScreen` `645:6802`.
@@ -83,6 +84,7 @@ Web-прототип Super App (банк + маркет). Визуальный �
 - ShaderFill всё ещё пишет inline `width/height` design px; fluid cards должны форсить `!w-full !h-full` (как в `BalanceMarketplaceCard`). — Observed.
 - Balance overlap/animation + CardApplication 44px — pushed `bb48397`; визуальный ok Unverified. — Observed.
 - Cart gap Method_Tabs/section — pushed `bb48397`; визуальный ok Unverified. — Observed.
+- Fluid overlap + crown pin + sheet `z-10` over card — pushed; prod visual ok Unverified. — Observed.
 
 ## Do not redo
 - Не возвращать mock StatusBar / Home Indicator без явного разрешения.
@@ -99,4 +101,4 @@ Web-прототип Super App (банк + маркет). Визуальный �
 - Chrome removal (local): deleted `StatusBar.tsx` / `HomeIndicator.tsx`; top/bottom paddings на Balance, Bank, Catalog, Cart, PDP, Search, auth, sheets, HeroTop, Neo
 - Card application / Balance / Home: `CardApplicationScreen.tsx`, `BalanceScreen.tsx`, `HeroTop.tsx`, `App.tsx` (`cardIssued`)
 - Deploy: `vercel.json`, GitHub `muv96art-oss/superapp`, branch `main`
-- Last pushed commit: `bb48397` (Balance overlap/animation + CardApplication 44px + Cart gaps)
+- Last pushed commit: (Balance sheet z-stack + fluid overlap + crown pin — see Open work)
