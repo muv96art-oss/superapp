@@ -40,7 +40,7 @@ export function BalanceActionSection({
         data-name="Карточка перевода"
       >
         <div
-          className="flex w-full items-start gap-1 overflow-x-auto pl-6 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          className="flex w-full items-stretch gap-1 overflow-x-auto px-6 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
           data-name="Быстрые получатели"
         >
           {tiles.map((tile) => (
@@ -48,7 +48,7 @@ export function BalanceActionSection({
               key={tile.id}
               type="button"
               onClick={() => onTileClick?.(tile.id, tile.label)}
-              className="flex h-[110px] w-24 shrink-0 flex-col items-start justify-between overflow-hidden rounded-2xl bg-surface-secondary p-2 text-left"
+              className="flex h-[110px] w-[calc((100%-8px)/3)] shrink-0 flex-col items-start justify-between overflow-hidden rounded-2xl bg-surface-secondary p-2 text-left"
               data-node-id={tile.nodeId}
               data-name={tile.label}
               aria-label={tile.label}
@@ -67,8 +67,6 @@ export function BalanceActionSection({
               </p>
             </button>
           ))}
-          {/* End inset when scrolled to last tile — Figma right padding 24 */}
-          <span className="w-6 shrink-0" aria-hidden />
         </div>
       </div>
     </section>

@@ -56,14 +56,6 @@ const TEMPLATE_TILES = [
   { id: 'add', label: 'Добавить', iconSrc: assets.balanceTileAdd, nodeId: '716:8798' },
 ] as const
 
-/**
- * Figma Card stack 679:9843 (collapsed) / 676:9544 (expanded).
- * info.y: 131 → 335; card block y=24; Halva inset x=24 y=32.
- */
-const INFO_TOP_COLLAPSED = 131
-const INFO_TOP_EXPANDED = 335
-const CARD_BLOCK_TOP = 24
-
 /** Market balance / card — Figma 667:8794 → expand 676:9544 + issue states */
 export function BalanceScreen({
   isLoggedIn,
@@ -81,7 +73,6 @@ export function BalanceScreen({
   const [premiumSheetOpen, setPremiumSheetOpen] = useState(false)
   const toast = (message: string) => onToast?.(message)
   const displayName = isLoggedIn ? userName : 'Войдите в профиль'
-  const infoTop = sheetExpanded ? INFO_TOP_EXPANDED : INFO_TOP_COLLAPSED
 
   const cardTapEnabled = phase !== 'unissued'
   const showBonus = phase === 'activation' || phase === 'premium'
@@ -162,9 +153,9 @@ export function BalanceScreen({
       </div>
 
       <main className="flex min-h-0 flex-1 flex-col overflow-hidden pb-[96px]">
-        {/* Top — Figma 667:9037 */}
+        {/* Top — fixed; page scrolls below — Figma 667:9037 */}
         <header
-          className="flex shrink-0 flex-col items-center rounded-bl-[36px] rounded-br-[36px] bg-surface-secondary px-8 pt-[50px] pb-3"
+          className="relative z-20 flex shrink-0 flex-col items-center rounded-bl-[36px] rounded-br-[36px] bg-surface-secondary px-8 pt-[50px] pb-3"
           data-node-id="667:9037"
           data-name="Top"
         >
@@ -227,21 +218,19 @@ export function BalanceScreen({
           </div>
         </header>
 
-        {/* Card stack — Figma 679:9843 / expanded parent 676:9564 */}
+        {/* Full page scroll under fixed header — card + sheet content */}
         <div
-          className="relative min-h-0 flex-1 overflow-hidden"
+          className="relative min-h-0 flex-1 overflow-x-hidden overflow-y-auto overscroll-y-contain scrollbar-hide"
           data-node-id="679:9843"
           data-name="Card"
         >
-          {/* card + tabs — Figma y=24, py=4, gap=24 */}
           <div
-            className="absolute inset-x-0 z-[1] flex flex-col items-center gap-6 py-1"
-            style={{ top: CARD_BLOCK_TOP }}
+            className="flex flex-col items-center gap-6 px-0 pt-6 pb-2"
             data-node-id="679:9844"
             data-name="card"
           >
             <div
-              className="relative h-[187px] w-[311px]"
+              className="relative w-full max-w-full px-8"
               data-node-id="679:9845"
               data-name="Card"
             >
@@ -255,65 +244,58 @@ export function BalanceScreen({
                       ? 'Скрыть действия карты'
                       : 'Показать карту и действия'
                   }
-                  className="absolute inset-0 z-0 cursor-pointer"
+                  className="relative z-0 w-full cursor-pointer"
                 >
                   <BalanceMarketplaceCard balance="00.00" />
                 </button>
               ) : (
-                <>
+                <div className="relative w-full">
                   <BalanceMarketplaceCard />
                   <BalanceIssueButton
                     onClick={requestIssue}
                     className="absolute top-[14px] right-[14px] z-[1]"
                   />
-                </>
+                </div>
               )}
             </div>
 
-            <div
-              className={`flex w-full items-center justify-center gap-6 ${
-                sheetExpanded ? '' : 'pointer-events-none'
-              }`}
-              data-node-id="679:9846"
-              data-name="Tabs"
-              aria-hidden={!sheetExpanded}
-            >
-              {ACTIONS.map((action) => (
-                <button
-                  key={action.id}
-                  type="button"
-                  onClick={() => toast(action.label)}
-                  className="flex flex-col items-center justify-center gap-1 rounded-xl bg-[rgba(249,249,250,0.92)] p-2"
-                  data-node-id={action.nodeId}
-                  data-name="tab"
-                  tabIndex={sheetExpanded ? 0 : -1}
-                >
-                  <span className="relative flex size-8 items-center justify-center">
-                    <img
-                      alt=""
-                      src={action.icon}
-                      width={action.id === 'pay' ? 16 : 32}
-                      height={action.id === 'pay' ? 20 : 32}
-                      className={
-                        action.id === 'pay' ? 'h-5 w-4 object-contain' : 'size-8 max-w-none'
-                      }
-                    />
-                  </span>
-                  <span className="whitespace-nowrap text-[12px] leading-4 text-text-primary">
-                    {action.label}
-                  </span>
-                </button>
-              ))}
-            </div>
+            {sheetExpanded ? (
+              <div
+                className="flex w-full items-center justify-center gap-6"
+                data-node-id="679:9846"
+                data-name="Tabs"
+              >
+                {ACTIONS.map((action) => (
+                  <button
+                    key={action.id}
+                    type="button"
+                    onClick={() => toast(action.label)}
+                    className="flex flex-col items-center justify-center gap-1 rounded-xl bg-[rgba(249,249,250,0.92)] p-2"
+                    data-node-id={action.nodeId}
+                    data-name="tab"
+                  >
+                    <span className="relative flex size-8 items-center justify-center">
+                      <img
+                        alt=""
+                        src={action.icon}
+                        width={action.id === 'pay' ? 16 : 32}
+                        height={action.id === 'pay' ? 20 : 32}
+                        className={
+                          action.id === 'pay' ? 'h-5 w-4 object-contain' : 'size-8 max-w-none'
+                        }
+                      />
+                    </span>
+                    <span className="whitespace-nowrap text-[12px] leading-4 text-text-primary">
+                      {action.label}
+                    </span>
+                  </button>
+                ))}
+              </div>
+            ) : null}
           </div>
 
-          {/*
-            info sheet — Figma 687:6602 / 679:9859 collapsed top=131 / expanded top=335
-            py=32, gap=24, children w=327 (x=24), rounded 36, shadow 0 -3 14 / 7%
-          */}
           <div
-            className="absolute inset-x-0 bottom-0 z-[2] flex flex-col items-center gap-6 overflow-y-auto rounded-tl-[36px] rounded-tr-[36px] bg-surface-secondary px-6 py-8 shadow-[0px_-3px_14px_rgba(0,0,0,0.07)] transition-[top] duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] motion-reduce:transition-none"
-            style={{ top: infoTop }}
+            className="flex flex-col items-center gap-6 rounded-tl-[36px] rounded-tr-[36px] bg-surface-secondary px-6 py-8 shadow-[0px_-3px_14px_rgba(0,0,0,0.07)]"
             data-node-id="679:9859"
             data-name="info"
           >

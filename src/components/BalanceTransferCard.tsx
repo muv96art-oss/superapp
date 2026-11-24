@@ -13,7 +13,7 @@ export function BalanceTransferCard({
 }: Props) {
   return (
     <div
-      className="flex w-[327px] shrink-0 flex-col items-start gap-3 overflow-hidden rounded-3xl bg-white p-6"
+      className="flex w-full shrink-0 flex-col items-start gap-3 overflow-hidden rounded-3xl bg-white p-6"
       data-node-id={nodeId}
       data-name="Карточка перевода"
     >

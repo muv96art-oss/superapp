@@ -513,7 +513,7 @@ export function HeroTop({
             </div>
 
             <div
-              className="pointer-events-none absolute top-16 left-1/2 h-[159px] w-[322px] -translate-x-1/2 overflow-hidden"
+              className="pointer-events-none absolute top-16 left-1/2 aspect-[322/159] w-[calc(100%-48px)] -translate-x-1/2 overflow-hidden"
               data-node-id="680:9932"
               aria-hidden
             >

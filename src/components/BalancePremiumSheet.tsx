@@ -183,7 +183,7 @@ export function BalancePremiumSheet({
                 data-node-id="716:12089"
                 data-name="Body"
               >
-                <div className="flex w-[327px] flex-col items-start gap-2 text-center">
+                <div className="flex w-full flex-col items-start gap-2 text-center">
                   <h2
                     id="premium-sheet-title"
                     className="h-[26px] w-full font-inter text-[20px] font-semibold leading-[26px] text-text-primary"

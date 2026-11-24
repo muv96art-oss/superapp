@@ -65,7 +65,7 @@ export function PromoBlock({ onOpenCategoryListing }: Props) {
             <button
               key={promo.title}
               type="button"
-              className="relative flex h-[178px] w-[140px] shrink-0 flex-col items-start overflow-hidden rounded-xl px-3 py-2 text-left"
+              className="relative flex aspect-[140/178] w-[37.333%] min-w-[140px] shrink-0 flex-col items-start overflow-hidden rounded-xl px-3 py-2 text-left"
               aria-label={promo.title.replace(/\n/g, ' ')}
               data-name="Promo Categorie Banner"
               data-node-id={hasOverlay ? '654:8702' : undefined}

@@ -158,11 +158,11 @@ export function LoginBottomSheet({ open, onClose, onLoginMoby }: Props) {
             </div>
 
             <div
-              className="mx-auto flex w-[335px] flex-col items-center gap-3"
+              className="flex w-full flex-col items-center gap-3 px-5"
               data-node-id="613:11160"
             >
               <p
-                className="w-[220px] text-center text-[14px] leading-[18px] text-text-secondary"
+                className="w-full text-center text-[14px] leading-[18px] text-text-secondary"
                 data-node-id="625:6868"
               >
                 По аккаунту Moby

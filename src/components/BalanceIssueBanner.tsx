@@ -17,7 +17,7 @@ export function BalanceIssueBanner({ onClick }: Props) {
     <button
       type="button"
       onClick={onClick}
-      className="relative h-[72px] w-[327px] shrink-0 overflow-hidden rounded-[20px] bg-gradient-to-r from-[#4d1d63] to-[#f48ebd] px-6 py-4 text-left"
+      className="relative h-[72px] w-full shrink-0 overflow-hidden rounded-[20px] bg-gradient-to-r from-[#4d1d63] to-[#f48ebd] px-6 py-4 text-left"
       data-node-id="698:29990"
       data-name="Halva"
       aria-label="Оформи карту и получи 3000 BYN на счет"

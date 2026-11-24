@@ -13,7 +13,7 @@ export function BalanceOperationsCard({
 }: Props) {
   return (
     <div
-      className="flex h-16 w-[327px] shrink-0 items-center gap-3 overflow-hidden rounded-[20px] bg-white py-3 pr-3 pl-4"
+      className="flex h-16 w-full shrink-0 items-center gap-3 overflow-hidden rounded-[20px] bg-white py-3 pr-3 pl-4"
       data-node-id={nodeId}
       data-name="Статус"
     >

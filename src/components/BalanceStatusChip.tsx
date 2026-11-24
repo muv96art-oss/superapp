@@ -30,7 +30,7 @@ export function BalanceStatusChip({
   tone = 'delivery',
 }: Props) {
   const className = [
-    'flex h-[60px] w-[327px] shrink-0 items-center gap-3 overflow-hidden rounded-[20px] py-3 pr-3 pl-4 text-left',
+    'flex h-[60px] w-full shrink-0 items-center gap-3 overflow-hidden rounded-[20px] py-3 pr-3 pl-4 text-left',
     TONE_BG[tone],
   ].join(' ')
 

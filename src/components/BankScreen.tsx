@@ -81,14 +81,12 @@ export function BankScreen({ onOpenMarket, onToast, toast: toastMessage }: Props
 
           <LoyaltyBanner onClick={() => toast('МТбаллы')} />
 
-          <div className="flex flex-col gap-4 pb-6" data-node-id="313:36341">
-            <div className="scrollbar-hide flex gap-3 overflow-x-auto px-4">
+          <div className="flex flex-col gap-4 px-4 pb-6" data-node-id="313:36341">
+            <div className="scrollbar-hide flex w-full gap-3 overflow-x-auto">
               <BelkartWidget />
               <KaktusWidget />
             </div>
-            <div className="px-4">
-              <HalvaWidget />
-            </div>
+            <HalvaWidget />
           </div>
         </div>
       </main>
@@ -284,7 +282,7 @@ function LoyaltyBanner({ onClick }: { onClick: () => void }) {
 function BelkartWidget() {
   return (
     <div
-      className="flex h-[156px] w-[343px] shrink-0 flex-col justify-between overflow-hidden rounded-[24px] bg-white p-4"
+      className="flex h-[156px] w-full min-w-full shrink-0 flex-col justify-between overflow-hidden rounded-[24px] bg-white p-4"
       data-node-id="313:36343"
       data-name="item card"
     >
@@ -303,7 +301,7 @@ function BelkartWidget() {
             className="pointer-events-none absolute top-[-13%] left-[-17%] h-[128%] w-[133%] max-w-none"
           />
         </div>
-        <div className="flex min-w-0 flex-col items-start">
+        <div className="flex min-w-0 flex-1 flex-col items-start">
           <p className="truncate text-[12px] font-bold leading-4 tracking-[0.06px] text-[#b5b9bf] uppercase">
             Белкарт
           </p>
@@ -324,7 +322,13 @@ function BelkartWidget() {
         <span className="flex h-6 items-end rounded-lg bg-[#e0edff] px-2 py-1">
           <img alt="" src={assets.bankBelkartLogo} width={72} height={16} className="h-4 w-[72px]" />
         </span>
-        <img alt="" src={assets.bankBelkartPhone} width={16} height={16} className="size-4" />
+        <img
+          alt=""
+          src={assets.bankBelkartPhone}
+          width={16}
+          height={16}
+          className="ml-auto size-4"
+        />
       </div>
     </div>
   )
@@ -332,7 +336,7 @@ function BelkartWidget() {
 
 function KaktusWidget() {
   return (
-    <div className="relative w-[343px] shrink-0 overflow-hidden rounded-[24px] bg-white p-4">
+    <div className="relative w-full min-w-full shrink-0 overflow-hidden rounded-[24px] bg-white p-4">
       <div className="flex items-start gap-3">
         <img
           alt=""
@@ -355,7 +359,13 @@ function KaktusWidget() {
             <span className="rounded-full bg-fill-secondary px-2 py-1 text-[12px] font-medium text-fill-brand">
               4*5783
             </span>
-            <img alt="" src={assets.bankCardPhone} width={20} height={20} className="size-5" />
+            <img
+              alt=""
+              src={assets.bankCardPhone}
+              width={20}
+              height={20}
+              className="ml-auto size-5"
+            />
           </div>
         </div>
       </div>
@@ -367,7 +377,7 @@ function KaktusWidget() {
 function HalvaWidget() {
   return (
     <div
-      className="relative isolate flex w-[343px] flex-col items-center"
+      className="relative isolate flex w-full flex-col items-center"
       data-node-id="313:36346"
       data-name="item card"
     >
@@ -390,7 +400,7 @@ function HalvaWidget() {
             </div>
           </div>
 
-          <div className="flex w-[161px] shrink-0 flex-col gap-1">
+          <div className="flex min-w-0 flex-1 flex-col gap-1">
             <p className="truncate text-[12px] font-bold leading-4 tracking-[0.06px] text-[#b5b9bf] uppercase">
               Halvamax
             </p>
@@ -422,7 +432,13 @@ function HalvaWidget() {
             <span className="flex h-6 items-center rounded-lg bg-[#e0edff] px-2">
               <img alt="" src={assets.bankHalvaVisa} width={30} height={10} className="h-2.5 w-[30px]" />
             </span>
-            <img alt="" src={assets.bankHalvaPhone} width={16} height={16} className="size-4" />
+            <img
+              alt=""
+              src={assets.bankHalvaPhone}
+              width={16}
+              height={16}
+              className="ml-auto size-4"
+            />
           </div>
         </div>
       </div>

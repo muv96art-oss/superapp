@@ -114,10 +114,10 @@ export function NeoOnboardingScreen({ onDismiss }: Props) {
         </button>
       </div>
 
-      {/* CTA — bottom-anchored, 44px from screen edge (Figma gaps 12 / 16 / 8) */}
-      <div className="absolute inset-x-0 bottom-0 z-10 flex flex-col items-center pb-[44px]">
+      {/* CTA — bottom-anchored, 44px from screen edge; stretch width, keep h-11 */}
+      <div className="absolute inset-x-0 bottom-0 z-10 flex flex-col items-stretch px-8 pb-[44px]">
         <div
-          className="mb-4 flex w-full flex-col items-center gap-3 px-6"
+          className="mb-4 flex w-full flex-col items-center gap-3"
           data-node-id="613:15593"
         >
           <h1
@@ -137,7 +137,7 @@ export function NeoOnboardingScreen({ onDismiss }: Props) {
         <button
           type="button"
           onClick={onDismiss}
-          className="mb-2 flex h-11 w-[311px] items-center justify-center rounded-xl bg-fill-brand px-6 py-3 text-[16px] font-medium leading-5 text-white"
+          className="mb-2 flex h-11 w-full shrink-0 items-center justify-center rounded-xl bg-fill-brand px-6 py-3 text-[16px] font-medium leading-5 text-white"
           data-node-id="613:15592"
         >
           Оформить карту
@@ -146,7 +146,7 @@ export function NeoOnboardingScreen({ onDismiss }: Props) {
         <button
           type="button"
           onClick={onDismiss}
-          className="flex h-11 w-[311px] items-center justify-center rounded-xl bg-[rgba(249,249,250,0.08)] px-6 py-3 text-[16px] font-medium leading-5 text-[#838a95]"
+          className="flex h-11 w-full shrink-0 items-center justify-center rounded-xl bg-[rgba(249,249,250,0.08)] px-6 py-3 text-[16px] font-medium leading-5 text-[#838a95]"
           data-node-id="613:15657"
         >
           Позже

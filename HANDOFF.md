@@ -31,7 +31,7 @@ Web-прототип Super App (банк + маркет). Визуальный �
   - `virtual` (`687:6573`): карта issued `00.00`; тап карты **on**; баннер Премиум → **открывает БШ**; статус «Выпускаем карту…» → `activation`.
   - `activation` (`692:26673`): Премиум + категории + «Активируйте…»; бонус `0`; тап on. Баннер Премиум тоже → БШ.
   - `premium` (`692:26841`): после согласия + «Подключить» в БШ; статус «максимальный уровень» + категории; бонус `25`; тап on.
-  - Sheet: collapsed `top:131` / expanded `top:335`; таб Balance → всегда collapsed.
+  - Sheet: ранее collapsed `top:131` / expanded `top:335`. **2026-11-24:** страница Balance скроллится целиком под фиксированным хедером (имя/аватар); оверлейный top sheet убран по запросу пользователя — Observed.
 - Card application — Approved intent (пользователь 2026-11-20) / Observed реализация: Figma `716:12621`; reuse `BalanceMarketplaceCard` (287×173), `StatusBar`, тоглы как Premium; «Оформить» disabled до обоих согласий.
 - Premium БШ — Approved intent / Observed: Figma `716:11902` / `716:12084`.
 - Safari Tabs Mode на Balance **не** портить. — Approved.
@@ -64,8 +64,9 @@ Web-прототип Super App (банк + маркет). Визуальный �
 
 ## Open work
 - [x] Mobile full-bleed после `0f7850d` — ok пользователя (2026-11-24).
-- [ ] **Следующий шаг:** пропорции на >375 **без** scale шрифтов — через `aspect-ratio`/высоты по ширине у растягиваемых блоков (баннеры, категории, карты); шрифты не трогать.
+- [ ] **Следующий шаг:** визуальный ok пользователя по fluid-width правкам (BSH, Neo CTA, promo, Balance cards/scroll, CardApplication, badges fixed).
 - [x] Shell scale откатили — шрифты снова как в токенах (2026-11-24).
+- [x] Fluid width (2026-11-24, Observed): Login BSH, Neo buttons, Balance `w-[327]`→`w-full`, Transfer/Actions/Requisites, MarketplaceCard aspect-ratio, Promo `aspect-[140/178]`, Hero Halva card, CardApplication info+consent left, Balance page scroll + fixed header.
 - [ ] Визуальный ok / правки по `CardApplicationScreen` (`716:12621`) и входам (Halva / PDP / Balance).
 - [ ] Визуальный ok / правки по Premium БШ (`716:12084`).
 - [ ] Визуальный ok пользователя по связке Balance issue → Home Variant4 (`698:30267`) и по 4 состояниям Balance.

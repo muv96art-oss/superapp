@@ -18,7 +18,7 @@ export function BalancePremiumBanner({
     <button
       type="button"
       onClick={onClick}
-      className="relative h-[92px] w-[327px] shrink-0 overflow-hidden rounded-[20px] px-6 py-4 text-left"
+      className="relative h-[92px] w-full shrink-0 overflow-hidden rounded-[20px] px-6 py-4 text-left"
       style={{
         backgroundImage:
           'linear-gradient(90deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 69.4%), linear-gradient(90deg, #000 0%, #000 100%)',

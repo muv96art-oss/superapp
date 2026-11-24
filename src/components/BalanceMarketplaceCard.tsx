@@ -11,24 +11,27 @@ type Props = {
   /** When set — Figma Variant3 balance (672:9429); omit for unissued + issue CTA overlay */
   balance?: string
   className?: string
-  /** Outer size — Balance 311×187; application page 287×173 (716:12796) */
-  width?: number
-  height?: number
+  /**
+   * Design aspect — Balance 311×187; application 287×173 (716:12796).
+   * Card stretches to container width; height follows aspect-ratio. Fonts unchanged.
+   */
+  aspectWidth?: number
+  aspectHeight?: number
 }
 
 /** Marketplace card — Figma 672:9410 (Variant3) / instance 311×187 on Balance */
 export function BalanceMarketplaceCard({
   balance,
   className,
-  width = 311,
-  height = 187,
+  aspectWidth = 311,
+  aspectHeight = 187,
 }: Props) {
   return (
     <div
-      className={['relative overflow-hidden rounded-[24px]', className]
+      className={['relative w-full overflow-hidden rounded-[24px]', className]
         .filter(Boolean)
         .join(' ')}
-      style={{ width, height }}
+      style={{ aspectRatio: `${aspectWidth} / ${aspectHeight}` }}
       data-node-id="672:9410"
       data-name="Card"
     >
@@ -36,8 +39,8 @@ export function BalanceMarketplaceCard({
         <div className="absolute inset-0 rounded-[24px] bg-white" />
               <SafeShaderFill
                 className="absolute inset-0 rounded-[24px] opacity-40"
-                width={width}
-                height={height}
+                width={aspectWidth}
+                height={aspectHeight}
                 shader={{
                   setup: meshSetup,
                   render: meshRender,

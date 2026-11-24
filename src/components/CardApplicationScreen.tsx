@@ -92,27 +92,27 @@ export function CardApplicationScreen({
             </p>
           </div>
 
-          <div data-node-id="716:12796" data-name="Card" className="shrink-0">
-            <BalanceMarketplaceCard width={287} height={173} />
+          <div data-node-id="716:12796" data-name="Card" className="w-full shrink-0">
+            <BalanceMarketplaceCard aspectWidth={287} aspectHeight={173} />
           </div>
 
           <div
-            className="flex w-full flex-col items-center justify-center gap-2 rounded-2xl bg-[#e0edff] p-4"
+            className="flex w-full flex-col items-stretch justify-center gap-2 rounded-2xl bg-[#e0edff] p-4"
             data-node-id="716:12640"
             data-name="text"
           >
             {DETAILS.map((row) => (
               <div
                 key={row.nodeId}
-                className="flex h-10 w-full max-w-[311px] items-center gap-3"
+                className="flex h-10 w-full items-center gap-3"
                 data-node-id={row.nodeId}
                 data-name="Cell"
               >
-                <div className="flex min-w-0 flex-1 flex-col items-start justify-center gap-1">
-                  <p className="w-full font-inter text-[12px] font-medium leading-4 text-text-secondary">
+                <div className="flex min-w-0 flex-1 flex-col items-start justify-center gap-1 text-left">
+                  <p className="w-full text-left font-inter text-[12px] font-medium leading-4 text-text-secondary">
                     {row.label}
                   </p>
-                  <p className="w-full font-inter text-[16px] font-medium leading-5 text-text-primary">
+                  <p className="w-full text-left font-inter text-[16px] font-medium leading-5 text-text-primary">
                     {row.value}
                   </p>
                 </div>
@@ -206,8 +206,8 @@ function ConsentRow({
       data-node-id={nodeId}
       data-name="Checkbox"
     >
-      <div className="flex min-h-6 min-w-0 flex-1 flex-col items-start pt-1" data-name="text">
-        <p className="w-full font-inter text-[14px] font-normal leading-[18px] text-text-primary">
+      <div className="flex min-h-6 min-w-0 flex-1 flex-col items-start pt-1 text-left" data-name="text">
+        <p className="w-full text-left font-inter text-[14px] font-normal leading-[18px] text-text-primary">
           {children}
         </p>
       </div>
