@@ -9,6 +9,8 @@
   --color-text-primary: #0d0e0f;
   --color-text-secondary: #696e77;
   --color-text-inverted: #ffffff;
+  /* icon/primary — Figma token (BottomNav inactive 605:8782) */
+  --color-icon-primary: #0d0e0f;
   --color-bg-base: #ffffff;
   --color-surface-secondary: #f9f9fa;
   --color-surface-brand: #1b74fd;

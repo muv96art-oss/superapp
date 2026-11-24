@@ -3,6 +3,7 @@ import { assets } from '../assets'
 import { getProductPdp, installmentFromPrice, PDP_RECOMMENDED } from '../data'
 import { useDragScroll } from '../hooks/useDragScroll'
 import { BadgeDelivery, BadgeProduct, BadgeStatus } from './badges'
+import { BalancePremiumBanner } from './BalancePremiumBanner'
 import { Breadcrumbs } from './Breadcrumbs'
 import { PdpCreditTipsBanner } from './PdpCreditTipsBanner'
 import { ProductCard } from './ProductCard'
@@ -22,6 +23,12 @@ type Props = {
   onOpenCatalog?: () => void
   /** PDP tips 631:7110 / Halva 585:8582 → card application 716:12621 */
   onOpenCardApplication?: () => void
+  /** After card issue — swap Halva 585:8582 for Premium 698:30143 */
+  cardIssued?: boolean
+  /** After Premium connect — hide promo banner entirely */
+  isPremium?: boolean
+  /** Premium banner → БШ 716:12084 */
+  onOpenPremium?: () => void
 }
 
 export function ProductDetailScreen({
@@ -36,6 +43,9 @@ export function ProductDetailScreen({
   onCrumb,
   onOpenCatalog,
   onOpenCardApplication,
+  cardIssued = false,
+  isPremium = false,
+  onOpenPremium,
 }: Props) {
   const pdp = useMemo(() => getProductPdp(productId), [productId])
   const [activeImage, setActiveImage] = useState(0)
@@ -240,49 +250,53 @@ export function ProductDetailScreen({
                 </div>
               </div>
 
-              <button
-                type="button"
-                onClick={onOpenCardApplication}
-                aria-label="Получите кэшбэк в размере 10% от покупки любимых товаров"
-                className="relative flex h-[112px] w-full items-start gap-2.5 overflow-hidden rounded-[20px] px-6 py-4 text-left"
-                data-node-id="585:8582"
-                data-name="Halva"
-              >
-                <img
-                  alt=""
-                  aria-hidden
-                  src={assets.pdpHalvaBg}
-                  className="pointer-events-none absolute inset-0 size-full max-w-none rounded-[20px] object-cover"
-                />
-                <div
-                  className="relative flex h-full w-[168px] shrink-0 items-center gap-3"
-                  data-node-id="585:8583"
-                  data-name="MTkard Info"
-                >
-                  <p
-                    className="min-w-0 flex-1 text-[14px] font-bold leading-5 text-text-inverted"
-                    data-node-id="585:8586"
-                  >
-                    Получите кэшбэк
-                    <br />
-                    в размере 10%
-                    <br />
-                    от покупки любимых товаров
-                  </p>
-                </div>
-                <div
-                  aria-hidden
-                  className="pointer-events-none absolute top-[-3.57%] right-[-11px] bottom-[-74.11%] w-[195px]"
-                  data-node-id="633:6981"
-                  data-name="Девушка с картой NEO — сиреневая палитра"
+              {isPremium ? null : cardIssued ? (
+                <BalancePremiumBanner onClick={onOpenPremium} nodeId="698:30143" />
+              ) : (
+                <button
+                  type="button"
+                  onClick={onOpenCardApplication}
+                  aria-label="Получите кэшбэк в размере 10% от покупки любимых товаров"
+                  className="relative flex h-[112px] w-full items-start gap-2.5 overflow-hidden rounded-[20px] px-6 py-4 text-left"
+                  data-node-id="585:8582"
+                  data-name="Halva"
                 >
                   <img
                     alt=""
-                    src={assets.pdpHalvaCard}
-                    className="absolute inset-0 size-full max-w-none object-contain"
+                    aria-hidden
+                    src={assets.pdpHalvaBg}
+                    className="pointer-events-none absolute inset-0 size-full max-w-none rounded-[20px] object-cover"
                   />
-                </div>
-              </button>
+                  <div
+                    className="relative flex h-full w-[168px] shrink-0 items-center gap-3"
+                    data-node-id="585:8583"
+                    data-name="MTkard Info"
+                  >
+                    <p
+                      className="min-w-0 flex-1 text-[14px] font-bold leading-5 text-text-inverted"
+                      data-node-id="585:8586"
+                    >
+                      Получите кэшбэк
+                      <br />
+                      в размере 10%
+                      <br />
+                      от покупки любимых товаров
+                    </p>
+                  </div>
+                  <div
+                    aria-hidden
+                    className="pointer-events-none absolute top-[-3.57%] right-[-11px] bottom-[-74.11%] w-[195px]"
+                    data-node-id="633:6981"
+                    data-name="Девушка с картой NEO — сиреневая палитра"
+                  >
+                    <img
+                      alt=""
+                      src={assets.pdpHalvaCard}
+                      className="absolute inset-0 size-full max-w-none object-contain"
+                    />
+                  </div>
+                </button>
+              )}
             </div>
 
             <div

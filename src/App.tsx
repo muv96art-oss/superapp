@@ -1,5 +1,6 @@
 import { useCallback, useMemo, useRef, useState } from 'react'
 import { BalanceScreen } from './components/BalanceScreen'
+import { BalancePremiumSheet } from './components/BalancePremiumSheet'
 import { BankScreen } from './components/BankScreen'
 import { BottomNav } from './components/BottomNav'
 import { CardApplicationScreen } from './components/CardApplicationScreen'
@@ -55,6 +56,9 @@ export default function App() {
   const [marketIntroSeen, setMarketIntroSeen] = useState(false)
   /** Marketplace card issued on Balance → Home hero Variant4 (698:30267), Halva strip hidden */
   const [cardIssued, setCardIssued] = useState(false)
+  /** Premium connected via БШ — Balance phase + PDP banner hidden */
+  const [isPremium, setIsPremium] = useState(false)
+  const [premiumSheetOpen, setPremiumSheetOpen] = useState(false)
   /** Card application overlay — Figma 716:12621 */
   const [cardApplicationOpen, setCardApplicationOpen] = useState(false)
   const [authView, setAuthView] = useState<AuthView>(null)
@@ -114,6 +118,20 @@ export default function App() {
   const submitCardApplication = useCallback(() => {
     setCardIssued(true)
     setCardApplicationOpen(false)
+  }, [])
+
+  const openPremiumSheet = useCallback(() => {
+    if (!cardIssued || isPremium) return
+    setPremiumSheetOpen(true)
+  }, [cardIssued, isPremium])
+
+  const closePremiumSheet = useCallback(() => {
+    setPremiumSheetOpen(false)
+  }, [])
+
+  const connectPremium = useCallback(() => {
+    setIsPremium(true)
+    setPremiumSheetOpen(false)
   }, [])
 
   const openProduct = (id: string, from: ScreenBeforePdp) => {
@@ -297,7 +315,9 @@ export default function App() {
             toast={screen === 'balance' ? toast : null}
             active={screen === 'balance'}
             cardIssued={cardIssued}
+            isPremium={isPremium}
             onRequestIssue={openCardApplication}
+            onOpenPremium={openPremiumSheet}
           />
         </div>
 
@@ -403,6 +423,9 @@ export default function App() {
                 setScreen('catalog')
               }}
               onOpenCardApplication={openCardApplication}
+              cardIssued={cardIssued}
+              isPremium={isPremium}
+              onOpenPremium={openPremiumSheet}
             />
           </div>
         ) : null}
@@ -416,6 +439,13 @@ export default function App() {
             />
           </div>
         ) : null}
+
+        <BalancePremiumSheet
+          open={premiumSheetOpen}
+          onClose={closePremiumSheet}
+          onConnect={connectPremium}
+          onRulesClick={() => showToast('Правила Premium подписки')}
+        />
 
         {toast && (screen === 'pdp' || cardApplicationOpen) ? (
           <div

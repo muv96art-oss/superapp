@@ -6,7 +6,6 @@ import { BalanceIssueButton } from './BalanceIssueButton'
 import { BalanceMarketplaceCard } from './BalanceMarketplaceCard'
 import { BalanceOperationsCard } from './BalanceOperationsCard'
 import { BalancePremiumBanner } from './BalancePremiumBanner'
-import { BalancePremiumSheet } from './BalancePremiumSheet'
 import { BalanceRequisitesSection } from './BalanceRequisitesSection'
 import { BalanceStatusChip } from './BalanceStatusChip'
 import { BalanceTransferCard } from './BalanceTransferCard'
@@ -21,8 +20,12 @@ type Props = {
   active?: boolean
   /** Synced from App after card application submit — advances unissued → virtual */
   cardIssued?: boolean
+  /** Synced from App after Premium БШ connect */
+  isPremium?: boolean
   /** Issue CTAs open application page 716:12621 instead of immediate issue */
   onRequestIssue?: () => void
+  /** Premium banner → App-owned БШ 716:12084 */
+  onOpenPremium?: () => void
 }
 
 /** Card issue flow — Figma 698:29960 → 687:6573 → 692:26673 / 692:26841 */
@@ -64,12 +67,15 @@ export function BalanceScreen({
   toast: toastMessage,
   active = false,
   cardIssued = false,
+  isPremium = false,
   onRequestIssue,
+  onOpenPremium,
 }: Props) {
   const [sheetExpanded, setSheetExpanded] = useState(false)
-  const [phase, setPhase] = useState<CardPhase>(cardIssued ? 'virtual' : 'unissued')
+  const [phase, setPhase] = useState<CardPhase>(
+    isPremium ? 'premium' : cardIssued ? 'virtual' : 'unissued',
+  )
   const [premiumStatusVisible, setPremiumStatusVisible] = useState(true)
-  const [premiumSheetOpen, setPremiumSheetOpen] = useState(false)
   const toast = (message: string) => onToast?.(message)
   const displayName = isLoggedIn ? userName : 'Войдите в профиль'
 
@@ -90,6 +96,15 @@ export function BalanceScreen({
     }
   }, [cardIssued, phase])
 
+  // After Premium БШ connect — App sets isPremium
+  useEffect(() => {
+    if (isPremium && phase !== 'premium') {
+      setPhase('premium')
+      setPremiumStatusVisible(true)
+      setSheetExpanded(false)
+    }
+  }, [isPremium, phase])
+
   const requestIssue = () => onRequestIssue?.()
 
   const goActivation = () => {
@@ -97,14 +112,7 @@ export function BalanceScreen({
     setSheetExpanded(false)
   }
 
-  const openPremiumSheet = () => setPremiumSheetOpen(true)
-
-  const connectPremium = () => {
-    setPremiumSheetOpen(false)
-    setPhase('premium')
-    setPremiumStatusVisible(true)
-    setSheetExpanded(false)
-  }
+  const openPremiumSheet = () => onOpenPremium?.()
 
   const onActionTile = (_id: string, label: string) => toast(label)
 
@@ -390,12 +398,6 @@ export function BalanceScreen({
         </div>
       ) : null}
 
-      <BalancePremiumSheet
-        open={premiumSheetOpen}
-        onClose={() => setPremiumSheetOpen(false)}
-        onConnect={connectPremium}
-        onRulesClick={() => toast('Правила Premium подписки')}
-      />
     </div>
   )
 }

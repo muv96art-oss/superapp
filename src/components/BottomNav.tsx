@@ -45,6 +45,45 @@ const PILL_TABS: {
 
 type Indicator = { x: number; width: number; ready: boolean }
 
+/** Inactive icons via mask + icon/primary — Figma 605:8782 */
+function NavTabIcon({
+  src,
+  size,
+  active,
+}: {
+  src: string
+  size: number
+  active: boolean
+}) {
+  const box =
+    size === 18
+      ? 'absolute top-1/2 left-1/2 size-[18px] max-w-none -translate-x-1/2 -translate-y-1/2'
+      : 'absolute top-0.5 left-0.5 size-6 max-w-none'
+
+  if (active) {
+    return (
+      <img alt="" src={src} width={size} height={size} className={box} />
+    )
+  }
+
+  return (
+    <span
+      aria-hidden
+      className={`${box} bg-icon-primary`}
+      style={{
+        WebkitMaskImage: `url(${src})`,
+        maskImage: `url(${src})`,
+        WebkitMaskSize: 'contain',
+        maskSize: 'contain',
+        WebkitMaskRepeat: 'no-repeat',
+        maskRepeat: 'no-repeat',
+        WebkitMaskPosition: 'center',
+        maskPosition: 'center',
+      }}
+    />
+  )
+}
+
 /** Market tab bar — Figma 605:8782 */
 export function BottomNav({ active, onChange, cartCount, placement = 'fixed' }: Props) {
   const pillRef = useRef<HTMLDivElement>(null)
@@ -165,16 +204,10 @@ export function BottomNav({ active, onChange, cartCount, placement = 'fixed' }: 
                   data-name={item.id}
                 >
                   <span className="relative size-7 shrink-0">
-                    <img
-                      alt=""
+                    <NavTabIcon
                       src={item.icon(isActive)}
-                      width={item.size}
-                      height={item.size}
-                      className={
-                        item.size === 18
-                          ? 'absolute top-1/2 left-1/2 size-[18px] max-w-none -translate-x-1/2 -translate-y-1/2'
-                          : 'absolute top-0.5 left-0.5 size-6 max-w-none'
-                      }
+                      size={item.size}
+                      active={isActive}
                     />
                     {item.id === 'cart' && cartCount > 0 ? (
                       <span className="absolute top-0 right-0 flex h-3 min-w-3 items-center justify-center rounded-full bg-fill-accent-red px-0.5 text-[8px] font-bold leading-none text-white">
