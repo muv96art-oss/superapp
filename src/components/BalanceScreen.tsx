@@ -263,7 +263,7 @@ export function BalanceScreen({
               data-name="Tabs"
             >
               <div className="min-h-0 overflow-hidden">
-                <div className="flex w-full items-center justify-center gap-6 px-8 pt-6 pb-2">
+                <div className="flex w-full items-center justify-center gap-6 px-8 pt-6">
                   {ACTIONS.map((action) => (
                     <button
                       key={action.id}
@@ -298,7 +298,8 @@ export function BalanceScreen({
           <div
             className={`relative z-10 flex flex-col items-center gap-6 rounded-tl-[36px] rounded-tr-[36px] bg-surface-secondary px-6 pb-8 shadow-[0px_-3px_14px_rgba(0,0,0,0.07)] transition-[margin,padding] duration-300 ease-out motion-reduce:transition-none ${
               sheetExpanded
-                ? '-mt-6 pt-8'
+                ? // 24px gap under action tabs (was -mt-6 overlapping labels)
+                  'mt-6 pt-8'
                 : // Figma 687:6573: info y=131, Halva pt=32; fluid h=(100%-64px)*187/311 → -84 on 375
                   'mt-[calc(103px-(100%-64px)*187/311)] pt-8'
             }`}

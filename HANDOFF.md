@@ -63,6 +63,7 @@ Web-прототип Super App (банк + маркет). Визуальный �
   - `BalancePremiumBanner`: crown `right-[-7px]` — Figma `698:30148`.
   - `BalanceScreen` collapsed: sheet `z-10` над картой `z-0`; `pt-8` (Halva y=32 в `687:6573`); fluid `mt-[calc(103px-(100%-64px)*187/311)]`.
   - Visual ok Observed vs Figma `716:11024` / `687:6573`.
+- [x] Expanded Balance sheet gap 24px under Tabs (`mt-6`, без `-mt-6`) — pushed (Observed 2026-11-24).
 - [ ] **Следующий шаг:** визуальный ok / правки Premium БШ (`716:12084`).
 - [ ] Визуальный ok Balance issue → Home Variant4 и 4 состояний Balance.
 - [ ] Halva hero (default): финальный ok.
