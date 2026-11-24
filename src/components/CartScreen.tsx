@@ -145,12 +145,15 @@ export function CartScreen({
           </ul>
 
         <div className="mt-8 flex flex-col gap-6" data-node-id="525:34965">
-          {/* Content — Figma 525:34966: surface/secondary, p-16, r-24, gap-16 */}
+          {/* Content — Figma 525:34966: title H2 + surface/secondary, p-16, r-24, gap-24 */}
           <div
-            className="flex w-full flex-col gap-4 rounded-[24px] bg-surface-secondary p-4"
+            className="flex w-full flex-col gap-6 rounded-[24px] bg-surface-secondary p-4"
             data-node-id="525:34966"
             data-name="Content"
           >
+            <h2 className="w-full font-montserrat text-[24px] font-bold leading-[30px] tracking-[-0.24px] text-text-primary">
+              Доставка
+            </h2>
             <div className="flex w-full gap-2" data-node-id="525:34967" data-name="Method_Tabs">
               <button
                 type="button"
@@ -513,7 +516,7 @@ function CartSummary({
   if (installment) {
     return (
       <section
-        className="flex flex-col gap-3 rounded-2xl border border-border-tertiary bg-surface-secondary p-4"
+        className="flex w-full flex-col gap-3 rounded-2xl bg-[#ebf3ff] p-4"
         data-node-id="525:35003"
         data-name="Order Summary"
       >
@@ -530,15 +533,15 @@ function CartSummary({
 
   return (
     <section
-      className="flex w-full flex-col gap-1 rounded-2xl border border-border-tertiary bg-surface-secondary p-4"
+      className="flex w-full flex-col gap-1 rounded-2xl bg-[#ebf3ff] p-4"
       data-node-id="525:35003"
       data-name="Order Summary"
     >
-      <div className="flex w-full flex-col gap-4" data-node-id="525:35006" data-name="Content">
+      <div className="flex w-full flex-col gap-3" data-node-id="525:35006" data-name="Content">
         <h2 className="w-full font-montserrat text-[24px] font-bold leading-[30px] tracking-[-0.24px] text-text-primary">
           Итого
         </h2>
-        <div className="flex w-full flex-col gap-2 text-[14px] font-normal leading-5">
+        <div className="flex w-full flex-col gap-2 overflow-hidden text-[14px] font-normal leading-5">
           <SummaryRow label={itemsLabel} value={formatMoney(goodsTotal)} valueTone="primary" />
           {showDelivery || deliveryFree ? (
             <SummaryRow
@@ -551,10 +554,10 @@ function CartSummary({
             <SummaryRow label="Скидка" value={`-${formatMoney(discount)}`} valueTone="discount" />
           ) : null}
         </div>
-        <div className="h-px w-full bg-[#e0e0e0]" data-node-id="525:35015" data-name="Divider" />
-        <div className="flex w-full items-start justify-between text-[16px] leading-6 text-text-primary">
-          <p className="font-normal">К оплате</p>
-          <p className="font-bold whitespace-nowrap">{formatMoney(payable)}</p>
+        <div className="h-px w-full bg-border-primary" data-node-id="525:35015" data-name="Divider" />
+        <div className="flex w-full items-start justify-between overflow-hidden text-[16px] leading-6 text-text-primary">
+          <p className="shrink-0 font-normal">К оплате</p>
+          <p className="shrink-0 font-bold whitespace-nowrap">{formatMoney(payable)}</p>
         </div>
       </div>
     </section>

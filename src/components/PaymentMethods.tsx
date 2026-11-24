@@ -68,7 +68,7 @@ export function PaymentMethods({
       data-name="Details - Payment"
     >
       <div className="flex w-full flex-col gap-4 rounded-[20px]">
-      <h2 className="text-[16px] font-semibold leading-6 text-text-primary">
+      <h2 className="w-full font-montserrat text-[24px] font-bold leading-[30px] tracking-[-0.24px] text-text-primary">
         Способы оплаты
       </h2>
       <div className="flex w-full gap-1" role="group" aria-label="Когда оплатить">
