@@ -64,8 +64,8 @@ Web-прототип Super App (банк + маркет). Визуальный �
   - `BalanceScreen` collapsed: sheet `z-10` над картой `z-0`; `pt-8` (Halva y=32 в `687:6573`); fluid `mt-[calc(103px-(100%-64px)*187/311)]`.
   - Visual ok Observed vs Figma `716:11024` / `687:6573`.
 - [x] Expanded Balance sheet gap 24px under Tabs (`mt-6`, без `-mt-6`) — pushed `4ea4997` (Observed 2026-11-24).
-- [x] PDP promo banners by state — Halva `585:8582` → Premium `698:30143` after `cardIssued` → hide when `isPremium`; Premium БШ lifted to App — pushed (Observed 2026-11-24).
-- [x] BottomNav inactive via CSS mask + `bg-icon-primary` `#0d0e0f` (Figma `605:8782`) — pushed (Observed 2026-11-24).
+- [x] PDP promo banners by state — Halva `585:8582` → Premium `698:30143` after `cardIssued` → hide when `isPremium`; Premium БШ lifted to App — pushed `dd30af8` (Observed 2026-11-24).
+- [x] BottomNav inactive via CSS mask + `bg-icon-primary` `#0d0e0f` (Figma `605:8782`) — pushed `dd30af8` (Observed 2026-11-24).
 - [ ] **Следующий шаг:** визуальный ok / правки Premium БШ (`716:12084`).
 - [ ] Визуальный ok Balance issue → Home Variant4 и 4 состояний Balance.
 - [ ] Halva hero (default): финальный ok.
@@ -104,4 +104,4 @@ Web-прототип Super App (банк + маркет). Визуальный �
 - Chrome removal (local): deleted `StatusBar.tsx` / `HomeIndicator.tsx`; top/bottom paddings на Balance, Bank, Catalog, Cart, PDP, Search, auth, sheets, HeroTop, Neo
 - Card application / Balance / Home: `CardApplicationScreen.tsx`, `BalanceScreen.tsx`, `HeroTop.tsx`, `App.tsx` (`cardIssued`)
 - Deploy: `vercel.json`, GitHub `muv96art-oss/superapp`, branch `main`
-- Last pushed commit: `4ea4997` (expanded Balance sheet 24px gap under tabs)
+- Last pushed commit: `dd30af8` (PDP promo banners by state + BottomNav icon/primary)
