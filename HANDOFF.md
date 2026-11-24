@@ -66,7 +66,7 @@ Web-прототип Super App (банк + маркет). Визуальный �
 - [x] Expanded Balance sheet gap 24px under Tabs (`mt-6`, без `-mt-6`) — pushed `4ea4997` (Observed 2026-11-24).
 - [x] PDP promo banners by state — Halva `585:8582` → Premium `698:30143` after `cardIssued` → hide when `isPremium`; Premium БШ lifted to App — pushed `dd30af8` (Observed 2026-11-24).
 - [x] BottomNav inactive via CSS mask + `bg-icon-primary` `#0d0e0f` (Figma `605:8782`) — pushed `dd30af8` (Observed 2026-11-24).
-- [x] Cart checkout `525:34965` — Content/Payment cards surface-secondary r-24 p-16; Method_Tabs 14/20 on white; Timing/Method chips white + brand border; Summary `surface/secondary` + border tertiary + Montserrat H2 + «К оплате» — pushed (Observed 2026-11-24).
+- [x] Cart checkout `525:34965` — Content/Payment cards surface-secondary r-24 p-16; Method_Tabs 14/20 on white; Timing/Method chips white + brand border; Summary `surface/secondary` + border tertiary + Montserrat H2 + «К оплате» — pushed `cbec286` (Observed 2026-11-24).
 - [ ] **Следующий шаг:** визуальный ok / правки Premium БШ (`716:12084`).
 - [ ] Визуальный ok Balance issue → Home Variant4 и 4 состояний Balance.
 - [ ] Halva hero (default): финальный ok.
@@ -105,4 +105,4 @@ Web-прототип Super App (банк + маркет). Визуальный �
 - Chrome removal (local): deleted `StatusBar.tsx` / `HomeIndicator.tsx`; top/bottom paddings на Balance, Bank, Catalog, Cart, PDP, Search, auth, sheets, HeroTop, Neo
 - Card application / Balance / Home: `CardApplicationScreen.tsx`, `BalanceScreen.tsx`, `HeroTop.tsx`, `App.tsx` (`cardIssued`)
 - Deploy: `vercel.json`, GitHub `muv96art-oss/superapp`, branch `main`
-- Last pushed commit: `dd30af8` (PDP promo banners by state + BottomNav icon/primary)
+- Last pushed commit: `cbec286` (cart checkout Figma 525:34965 styles)
