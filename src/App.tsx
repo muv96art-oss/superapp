@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { BalanceScreen } from './components/BalanceScreen'
 import { BankScreen } from './components/BankScreen'
 import { BottomNav } from './components/BottomNav'
@@ -39,8 +39,36 @@ type AuthView = null | 'sheet' | 'phone' | 'sms' | 'msi' | 'onboarding'
 type AuthPath = 'moby' | 'phone'
 
 const MOBY_ACCOUNT_PHONE = '+375298889980'
+/** Figma artboard width — mobile shell scales uniformly from this. */
+const DESIGN_WIDTH = 375
+const MD_BREAKPOINT = 768
+
+/** Uniform scale so px-sized Figma layout keeps aspect ratio on any phone width. */
+function readDesignScale() {
+  if (typeof window === 'undefined') return 1
+  const w = window.visualViewport?.width ?? window.innerWidth
+  return w < MD_BREAKPOINT ? w / DESIGN_WIDTH : 1
+}
+
+function useDesignScale() {
+  const [scale, setScale] = useState(readDesignScale)
+
+  useEffect(() => {
+    const update = () => setScale(readDesignScale())
+    update()
+    window.addEventListener('resize', update)
+    window.visualViewport?.addEventListener('resize', update)
+    return () => {
+      window.removeEventListener('resize', update)
+      window.visualViewport?.removeEventListener('resize', update)
+    }
+  }, [])
+
+  return scale
+}
 
 export default function App() {
+  const designScale = useDesignScale()
   const [screen, setScreen] = useState<Screen>('bank')
   const [pdpId, setPdpId] = useState<string | null>(null)
   const [pdpFrom, setPdpFrom] = useState<ScreenBeforePdp>('home')
@@ -246,12 +274,22 @@ export default function App() {
     cardApplicationOpen
 
   return (
-    <div className="flex h-dvh justify-center overflow-hidden bg-bg-base md:bg-[#e8eaed]">
+    <div className="flex h-dvh justify-start overflow-hidden bg-bg-base md:justify-center md:bg-[#e8eaed]">
       {/*
-        Phone frame only from tablet/desktop up.
-        On real phones (often >430 CSS px, e.g. Pro Max) full-bleed — no gray gutters.
+        Design canvas 375px. On phones: uniform scale to viewport width (full-bleed,
+        proportions match 375×812). From md: fixed 375 phone frame on gray canvas.
       */}
-      <div className="relative h-dvh w-full max-w-none overflow-hidden bg-bg-base md:max-w-[375px] md:shadow-[0_0_40px_rgba(0,0,0,0.12)]">
+      <div
+        className="app-phone-scale"
+        style={
+          designScale !== 1
+            ? {
+                height: `calc(100dvh / ${designScale})`,
+                transform: `scale(${designScale})`,
+              }
+            : undefined
+        }
+      >
         {/* Keep prior screens mounted (hidden) so scroll position survives back */}
         <div className={layer(screen === 'bank')} aria-hidden={screen !== 'bank'}>
           <BankScreen

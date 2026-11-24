@@ -1,7 +1,7 @@
 # Compact: Super App
 
 ## Goal
-Web-прототип Super App (банк + маркет). Визуальный источник — Figma `BlCBDkgcEsVAj6n7r9vgyh`. Готово, когда принятые экраны совпадают с макетами: банк, маркет, корзина/оплата, флоу регистрации/входа, переход банк→маркет, Balance issue + связанное состояние Home, Premium-подписка с БШ, страница оформления карты.
+Web-прототип Super App (банк + маркет). Визуальный источник — Figma `BlCBDkgcEsVAj6n7r9vgyh`. Готово, когда принятые экраны совпадают с макетами: банк, маркет, корзина/оплата, флоу регистрации/входа, переход банк→маркет, Balance issue + связанное состояние Home, Premium-подписка с БШ, страница оформления карты. Публичный просмотр — Vercel + autodeploy с GitHub.
 
 ## Status
 - Done: главная, каталог, листинги, поиск, корзина, PDP, оплата; банк (`BankScreen`); market `BottomNav` (sliding Selection + glass); Home Indicator на шелле; auth (BSH → SMS/NEO); переход банк→маркет (`MarketTransitionScreen` `645:6802`) с `marketIntroSeen`.
@@ -10,9 +10,14 @@ Web-прототип Super App (банк + маркет). Визуальный �
 - Done: блоки sheet Balance как компоненты: `BalanceIssueBanner`, `BalancePremiumBanner`, `BalanceOperationsCard`, `BalanceTransferCard`, `BalanceStatusChip`; плюс (Observed): `BalanceIssueButton`, `BalanceMarketplaceCard`, `BalanceActionSection`, `BalanceRequisitesSection`; ассеты `public/assets/balance/components/*` + `src/assets.ts`; mesh ShaderFill где применимо.
 - Done: выпуск карты → Home Variant4: `cardIssued` в `App.tsx` → `HomeScreen` → `HeroTop`; Figma `391:77341` (530 + Halva) → `698:30267` (420, Halva скрыта).
 - Done (2026-11-20): Premium флоу — баннер → `BalancePremiumSheet` → тогл → «Подключить» → `phase: premium`.
-- Done (2026-11-20, Observed `:5174`): **`CardApplicationScreen` `716:12621`** — оверлей; входы: Halva `654:8738`, PDP tips `631:7110`, PDP Halva `585:8582`, Balance banner `698:29990`, issue CTA `672:9159`. Оба согласия → «Оформить» → `cardIssued` + Balance `virtual` + Home Variant4. BottomNav скрыт на оверлее.
-- Verified (Observed): Halva Home → страница; submit → Halva скрыта; Balance virtual (Premium banner + «Выпускаем карту…»).
-- Not verified / Unverified: финальный ok пользователя по Premium БШ / CardApplication / 4 состояниям Balance / Home Variant4; финальный ok Halva hero (default); frame-by-frame `MarketTransitionScreen`; телефон `:5175`.
+- Done (2026-11-20, Observed): **`CardApplicationScreen` `716:12621`** — оверлей; входы: Halva `654:8738`, PDP tips `631:7110`, PDP Halva `585:8582`, Balance banner `698:29990`, issue CTA `672:9159`. Оба согласия → «Оформить» → `cardIssued` + Balance `virtual` + Home Variant4. BottomNav скрыт на оверлее.
+- Done (Observed, 2026-11-24): публичный хостинг — GitHub `muv96art-oss/superapp`, Vercel autodeploy с `main`; прод URL вида `https://dist-six-lemon-fbc1p6aczo.vercel.app` (и preview на vercel.app из скрина). `vercel.json`, `.gitignore`/`.vercel` в репо.
+- Done (Observed, 2026-11-24): Safari blank — `SafeShaderFill` + `AppErrorBoundary`; Vite target `safari14`; коммит `efc630b`.
+- Done (Observed, 2026-11-24): мобильный full-bleed — рамка `max-w-[375px]` + серый фон `#e8eaed` **только от `md` (768px)**; на телефоне без gutters. Body bg white на mobile. Коммит `0f7850d`.
+- Verified (2026-11-24): пользователь подтвердил на телефоне — серых полей нет, full-bleed ок после `0f7850d`.
+- Done (Observed, 2026-11-24, локально): proportional shell — layout в 375px + `scale(viewport/375)` на mobile (`useDesignScale`); на 430px verified в browser (rect 430×932, категории logical ~161×142). Ждёт ok на телефоне / deploy.
+- Verified (Observed ранее): Halva Home → страница; submit → Halva скрыта; Balance virtual (Premium banner + «Выпускаем карту…»).
+- Not verified / Unverified: ok пропорционального scale на реальном Safari; финальный ok Premium БШ / CardApplication / 4 состояниям Balance / Home Variant4; Halva hero; `MarketTransitionScreen`.
 
 ## Decisions
 - Платформа Web. React, TypeScript, Tailwind CSS v4, Vite. — Approved — `package.json`.
@@ -34,15 +39,16 @@ Web-прототип Super App (банк + маркет). Визуальный �
   - `cardIssued=false` → HeroTop `391:77341` / h=`530` + Halva `654:8738` + карта `680:9932`.
   - `cardIssued=true` → HeroTop Variant4 `698:30267` / h=`420`, Halva **скрыта**.
 - Промо NEO / Home Indicator `z-[90]` — Approved + Locked (см. Locked UI).
+- Десктоп: phone-frame 375 + серый canvas. Мобильный: full-bleed **и** uniform scale от design canvas 375 (`scale = viewportWidth/375`) — пропорции как у 375×812, без горизонтального «растягивания» фиксированных px. — Observed intent 2026-11-24 (пользователь) / реализация `useDesignScale` + `.app-phone-scale` в `App.tsx` / `index.css`.
 
 ## Constraints
 - Контент и стили из Figma; конфликт с утверждённым UI — спросить. — Approved.
 - `DESIGN.md` нет — не создавать без запроса. — Approved.
 - Экраны маркета через `hidden`; PDP/auth/card-application — overlay. — Observed — `App.tsx`.
-- Локально: `http://127.0.0.1:5174/` (также `:5173`). Телефон: `0.0.0.0:5175`; VPN Faygo Connect мешает. — Observed.
+- Локально: `http://127.0.0.1:5174/` (также `:5173`). Телефон LAN: `0.0.0.0:5175`; VPN Faygo Connect мешает. — Observed.
+- Прод: GitHub `muv96art-oss/superapp` → Vercel Production на push в `main`. — Observed.
 - Не менять Locked UI без явного разрешения. — Approved.
 - Variant4 Home — только через `cardIssued` из card application submit; не хардкодить 420 как единственное состояние. — Approved.
-- Vite на `:5174` — Observed running.
 
 ## Locked and approved UI
 - NeoOnboardingScreen — `src/components/NeoOnboardingScreen.tsx` + `public/assets/auth/neo-*` — **не менять** без разрешения.
@@ -57,12 +63,13 @@ Web-прототип Super App (банк + маркет). Визуальный �
 - Card issue entry через `CardApplicationScreen` (не прямой jump в `virtual` с баннера/кнопки) — Approved intent 2026-11-20; не откатывать без разрешения.
 
 ## Open work
-- [ ] **Следующий шаг:** визуальный ok / правки пользователя по `CardApplicationScreen` (`716:12621`) и входам (Halva / PDP / Balance).
+- [x] Mobile full-bleed после `0f7850d` — ok пользователя (2026-11-24).
+- [ ] **Следующий шаг:** на телефоне (прод после push) проверить proportional scale: Home / Balance / Bank / CardApplication — пропорции как на 375×812.
+- [ ] Визуальный ok / правки по `CardApplicationScreen` (`716:12621`) и входам (Halva / PDP / Balance).
 - [ ] Визуальный ok / правки по Premium БШ (`716:12084`).
 - [ ] Визуальный ok пользователя по связке Balance issue → Home Variant4 (`698:30267`) и по 4 состояниям Balance.
 - [ ] Halva hero (default, до issue): финальный ok пользователя.
 - [ ] Опционально по запросу: пиксель-сверка `MarketTransitionScreen` `645:6802`.
-- [ ] Телефонный просмотр: выключить Faygo Connect, проверить `:5175`.
 - [ ] Unverified: обновить `docs/approved-components.md` только по явному запросу.
 
 ## Known issues
@@ -75,7 +82,10 @@ Web-прототип Super App (банк + маркет). Визуальный �
 - Ссылки договора / памятки на CardApplication — toast-stub. — Observed.
 - Guest на Home («Войдите в профиль») не блокирует issue на Balance — Observed / Unverified product intent.
 - Close-анимация БШ при `open=false` (как у `LoginBottomSheet`): unmount через rAF без гарантированного slide-down — Observed / Unverified polish.
-- ShaderFill (mesh) на карте требует WebGPU; без него карта выглядит почти белой + нижний градиент. — Observed.
+- ShaderFill (mesh) на карте требует WebGPU; без него / при ошибке — `SafeShaderFill` fallback (не blank). — Observed — `SafeShaderFill` / Safari fix `efc630b`.
+- Серые gutters на телефонах >430 CSS px — исправлено в `0f7850d`; визуальный ok на устройстве подтверждён (2026-11-24).
+- После full-bleed без scale: на ширине >375 фиксированные px тянулись по ширине (банеры/категории/карточки). Fix: uniform `transform: scale(width/375)` на оболочке — Unverified на реальном Safari до ok пользователя.
+- Lightning/Tailwind отбрасывает `calc(100vw/375)` в CSS `transform` — scale задаётся inline из JS (`useDesignScale`). — Observed.
 
 ## Do not redo
 - Не трогать NEO / Tabs Mode / `pb-[44px]` CTA без запроса.
@@ -89,13 +99,17 @@ Web-прототип Super App (банк + маркет). Визуальный �
 - Не откатывать компонентные блоки Balance sheet обратно в монолитные PNG без запроса.
 - Не возвращать прямой `goPremium` с `BalancePremiumBanner` в обход БШ без явного разрешения.
 - Не возвращать прямой `issueCard` → `virtual` с баннера/кнопки в обход `CardApplicationScreen` без явного разрешения.
+- Не возвращать постоянный `max-w-[375px]` на мобильных (серые gutters) без явного разрешения — mobile full-bleed от `0f7850d`.
+- Не убирать uniform scale от 375 на мобильных без явного разрешения (иначе снова «растянутые» пропорции).
 - Не пересматривать Decisions / Locked UI без явного разрешения пользователя.
 
 ## Key files
+- Shell layout: `src/App.tsx` (`useDesignScale`, `.app-phone-scale`), `src/index.css` (body bg + shell base)
+- Safari safety: `SafeShaderFill` (если есть), `AppErrorBoundary`
 - Card application: `CardApplicationScreen.tsx`, `App.tsx` (`cardApplicationOpen`, `openCardApplication`, `submitCardApplication`), `public/assets/card-application/back.svg`
 - Entry wiring: `HeroTop.tsx` (Halva), `PdpCreditTipsBanner.tsx`, `ProductDetailScreen.tsx` (Halva `585:8582`), `BalanceScreen.tsx` (`onRequestIssue`, `cardIssued`)
 - Home↔Balance: `src/App.tsx` (`cardIssued`), `HomeScreen.tsx`, `HeroTop.tsx`, `BalanceScreen.tsx`
 - Balance components: `BalanceIssueBanner.tsx`, `BalanceIssueButton.tsx`, `BalanceMarketplaceCard.tsx`, `BalancePremiumBanner.tsx`, `BalancePremiumSheet.tsx`, …
 - Ассеты: `src/assets.ts` (`balance*`, `cardApplicationBack`), `public/assets/balance/`, `public/assets/balance/components/`
 - Hero: `HeroTop.tsx`, `public/assets/home/halva-card-figma-source.png`
-- Auth / банк→маркет / банк: как ранее в репозитории
+- Deploy: `vercel.json`, GitHub `muv96art-oss/superapp`, branch `main`
