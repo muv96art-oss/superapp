@@ -11,12 +11,8 @@ Web-прототип Super App (банк + маркет). Визуальный �
 - Done: выпуск карты → Home Variant4 через `cardIssued`; Premium БШ; `CardApplicationScreen` `716:12621` (входы Halva / PDP / Balance).
 - Done (Observed, 2026-11-24): GitHub `muv96art-oss/superapp` → Vercel autodeploy с `main`; Safari fix `efc630b`; mobile full-bleed `0f7850d` (Verified на телефоне).
 - Done (Observed, 2026-11-24): fluid width без shell scale — коммит `711e8e2` (BSH, Neo CTA, promo, Balance cards, CardApplication, badges fixed h-7, Balance page scroll + fixed header). Shell scale откатили (`f56057f`) — шрифты = токены.
-- Done locally / **не закоммичено** (Observed, 2026-11-24): **StatusBar + Home Indicator убраны везде** — удалены `StatusBar.tsx`, `HomeIndicator.tsx`; сняты обёртки и отступы на экранах/шитах; `tsc --noEmit` ok. Working tree dirty на `main`.
-- Done locally / **не закоммичено** (Observed, 2026-11-24, handoff chat): 3 бага CardApplication/chrome:
-  1. `BalanceMarketplaceCard` — strip height `%` от `aspectHeight` (Figma 14px); `!w-full !h-full` поверх inline size ShaderFill; overflow + `rounded-b-[24px]` на strip. Verified в browser: canvas fills fluid card, strip width = card.
-  2. ConsentRow brand links — `inline … text-left` (кнопки больше не center). Verified `textAlign: left`.
-  3. Top inset после StatusBar: BankTop `pt-16`→`pt-3`; SmsAuth + Neo navbar `h-[88px]`→`h-11` (Approved chrome). Home/Balance/Catalog/Search/CardApplication уже были `pt-3` / `h-11`.
-- Not verified / Unverified: визуальный ok на устройстве; Premium БШ / Balance states / Halva / MarketTransition пиксель-ok; полный pixel-ok CardApplication vs Figma `716:12621`.
+- Done / pushed `28303d5` (Observed, 2026-11-24): StatusBar + HI удалены; CardApplication fluid card + ConsentRow left-align; BankTop/auth top insets; Belkart/Halva phone icon у бейджей (без `ml-auto`). Vercel autodeploy с `main`.
+- Not verified / Unverified: визуальный ok на устройстве после `28303d5`; Premium БШ / Balance states / Halva / MarketTransition пиксель-ok.
 
 ## Decisions
 - Платформа Web. React, TypeScript, Tailwind CSS v4, Vite. — Approved — `package.json`.
@@ -60,11 +56,11 @@ Web-прототип Super App (банк + маркет). Визуальный �
 - Premium entry через БШ; Card issue entry через `CardApplicationScreen` — не откатывать на прямые jumps.
 
 ## Open work
-- [x] Три бага CardApplication/chrome (2026-11-24) — fixed locally, browser-checked; **не закоммичено**.
-- [ ] **Следующий шаг:** визуальный ok от пользователя по CardApplication карте + ConsentRow + Bank top; затем по запросу **commit + push** (chrome removal + эти фиксы) на `main`.
+- [x] Три бага CardApplication/chrome + bank badge icons — pushed `28303d5` (2026-11-24).
+- [ ] **Следующий шаг:** визуальный ok на проде после деплоя `28303d5` (CardApplication, Bank badges, top insets).
 - [x] Mobile full-bleed `0f7850d` — ok (2026-11-24).
 - [x] Fluid width `711e8e2` — в коде; визуальный ok ещё нужен.
-- [x] StatusBar + HI убраны локально (2026-11-24) — не закоммичено / working tree dirty.
+- [x] StatusBar + HI убраны — в `28303d5` на `main`.
 - [ ] Визуальный ok / правки Premium БШ (`716:12084`).
 - [ ] Визуальный ok Balance issue → Home Variant4 и 4 состояний Balance.
 - [ ] Halva hero (default): финальный ok.
@@ -81,7 +77,7 @@ Web-прототип Super App (банк + маркет). Визуальный �
 - Close-анимация БШ при `open=false` — Observed / Unverified polish.
 - ShaderFill → WebGPU; иначе `SafeShaderFill`. — Observed.
 - Ширина >375: высоты тянут блоки; нужен per-component aspect-ratio, не shell scale. — Observed.
-- Chrome removal (status/HI) + 3 бага CardApplication ещё не на origin/`main` — Observed working tree dirty.
+- HANDOFF может быть чуть впереди tip после post-push update — Observed.
 - PhoneLogin `pt-[82px]` / SmsAuth content `pt-[40px]` / PDP recommended `pt-[72px]` — design spacing (не status leftover); не трогать без запроса. — Observed.
 - ShaderFill всё ещё пишет inline `width/height` design px; fluid cards должны форсить `!w-full !h-full` (как в `BalanceMarketplaceCard`). — Observed.
 
@@ -100,4 +96,4 @@ Web-прототип Super App (банк + маркет). Визуальный �
 - Chrome removal (local): deleted `StatusBar.tsx` / `HomeIndicator.tsx`; top/bottom paddings на Balance, Bank, Catalog, Cart, PDP, Search, auth, sheets, HeroTop, Neo
 - Card application / Balance / Home: `CardApplicationScreen.tsx`, `BalanceScreen.tsx`, `HeroTop.tsx`, `App.tsx` (`cardIssued`)
 - Deploy: `vercel.json`, GitHub `muv96art-oss/superapp`, branch `main`
-- Last pushed commit on branch tip before chrome: `711e8e2`
+- Last pushed commit: `28303d5` (chrome + CardApplication + bank badge icons)
