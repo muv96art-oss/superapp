@@ -246,9 +246,12 @@ export default function App() {
     cardApplicationOpen
 
   return (
-    <div className="flex h-dvh justify-center overflow-hidden bg-[#e8eaed]">
-      {/* Single phone shell — screens fill it edge-to-edge (no per-screen gutters) */}
-      <div className="relative h-dvh w-full max-w-[375px] overflow-hidden bg-bg-base shadow-[0_0_40px_rgba(0,0,0,0.12)] max-[430px]:max-w-none">
+    <div className="flex h-dvh justify-center overflow-hidden bg-bg-base md:bg-[#e8eaed]">
+      {/*
+        Phone frame only from tablet/desktop up.
+        On real phones (often >430 CSS px, e.g. Pro Max) full-bleed — no gray gutters.
+      */}
+      <div className="relative h-dvh w-full max-w-none overflow-hidden bg-bg-base md:max-w-[375px] md:shadow-[0_0_40px_rgba(0,0,0,0.12)]">
         {/* Keep prior screens mounted (hidden) so scroll position survives back */}
         <div className={layer(screen === 'bank')} aria-hidden={screen !== 'bank'}>
           <BankScreen

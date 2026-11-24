@@ -62,10 +62,16 @@ body,
 
 body {
   font-family: var(--font-inter);
-  background: #e8eaed;
+  background: var(--color-bg-base, #fff);
   color: var(--color-text-primary);
   -webkit-font-smoothing: antialiased;
   overscroll-behavior: none;
+}
+
+@media (min-width: 768px) {
+  body {
+    background: #e8eaed;
+  }
 }
 
 button,
