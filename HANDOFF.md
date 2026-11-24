@@ -59,7 +59,7 @@ Web-прототип Super App (банк + маркет). Визуальный �
 - [x] Три бага CardApplication/chrome + bank badge icons — pushed `28303d5` / HANDOFF `c74656d`.
 - [x] Cart Method_Tabs gap-2 (8px) + section gap-4 (16px) — pushed (Observed 2026-11-24).
 - [x] Balance card overlap + open animation + CardApplication 44px inset — pushed `bb48397` (Observed 2026-11-24).
-- [x] Fluid Balance overlap + Premium crown pin + sheet stacking — pushed (Observed 2026-11-24):
+- [x] Fluid Balance overlap + Premium crown pin + sheet stacking — pushed `8b4297b` (Observed 2026-11-24):
   - `BalancePremiumBanner`: crown `right-[-7px]` — Figma `698:30148`.
   - `BalanceScreen` collapsed: sheet `z-10` над картой `z-0`; `pt-8` (Halva y=32 в `687:6573`); fluid `mt-[calc(103px-(100%-64px)*187/311)]`.
   - Visual ok Observed vs Figma `716:11024` / `687:6573`.
@@ -101,4 +101,4 @@ Web-прототип Super App (банк + маркет). Визуальный �
 - Chrome removal (local): deleted `StatusBar.tsx` / `HomeIndicator.tsx`; top/bottom paddings на Balance, Bank, Catalog, Cart, PDP, Search, auth, sheets, HeroTop, Neo
 - Card application / Balance / Home: `CardApplicationScreen.tsx`, `BalanceScreen.tsx`, `HeroTop.tsx`, `App.tsx` (`cardIssued`)
 - Deploy: `vercel.json`, GitHub `muv96art-oss/superapp`, branch `main`
-- Last pushed commit: (Balance sheet z-stack + fluid overlap + crown pin — see Open work)
+- Last pushed commit: `8b4297b` (Balance sheet z-stack + fluid overlap + crown pin)
