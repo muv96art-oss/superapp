@@ -2,7 +2,6 @@ import { forwardRef, useImperativeHandle, useRef } from 'react'
 import { assets } from '../assets'
 import { CATALOG_CATEGORIES } from '../data'
 import { SiteFooter } from './SiteFooter'
-import { StatusBar } from './StatusBar'
 
 type Props = {
   cartCount: number
@@ -33,14 +32,13 @@ export const CatalogScreen = forwardRef<CatalogScreenHandle, Props>(function Cat
       data-node-id="391:111649"
       data-name="Каталог — 1442"
     >
-      <StatusBar />
 
       <header
         className="relative z-20 shrink-0 rounded-b-[20px] bg-bg-base pb-4 shadow-[0px_10px_3px_0px_rgba(214,214,214,0),0px_7px_3px_0px_rgba(214,214,214,0.01),0px_4px_2px_0px_rgba(214,214,214,0.05),0px_2px_2px_0px_rgba(214,214,214,0.09),0px_0px_1px_0px_rgba(214,214,214,0.1)]"
         data-node-id="391:111650"
         data-name="HeaderMobile"
       >
-        <div className="flex flex-col gap-3 px-4 pt-[52px]">
+        <div className="flex flex-col gap-3 px-4 pt-3">
           <button
             type="button"
             onClick={onOpenSearch}

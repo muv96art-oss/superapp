@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { assets } from '../assets'
-import { StatusBar } from './StatusBar'
 
 type Props = {
   onBack: () => void
@@ -18,9 +17,8 @@ export function MsiAuthScreen({ onBack, onComplete }: Props) {
       data-node-id="613:14799"
       data-name="MSI auth"
     >
-      <StatusBar tone="dark" />
 
-      <div className="relative z-10 flex items-end gap-[15px] px-4 pb-3 pt-[50px]">
+      <div className="relative z-10 flex items-end gap-[15px] px-4 pb-3 pt-3">
         <button type="button" onClick={onBack} aria-label="Назад" className="pb-1">
           <svg width={9} height={16} viewBox="0 0 9 16" fill="none" aria-hidden="true">
             <path

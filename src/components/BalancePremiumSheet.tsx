@@ -281,7 +281,6 @@ export function BalancePremiumSheet({
           </button>
         </div>
 
-        <div className="h-[34px] w-full shrink-0" aria-hidden data-node-id="716:12135" />
       </div>
     </div>
   )

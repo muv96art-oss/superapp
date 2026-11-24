@@ -10,7 +10,6 @@ import {
 } from '../data'
 import { ProductCard } from './ProductCard'
 import { SiteFooter } from './SiteFooter'
-import { StatusBar } from './StatusBar'
 
 type Props = {
   onCancel: () => void
@@ -88,13 +87,12 @@ export function SearchScreen({
       data-node-id="462:3304"
       data-name="Search"
     >
-      <StatusBar />
 
       <header
         className="relative z-20 shrink-0 rounded-b-[20px] bg-bg-base pb-4 shadow-[0px_10px_3px_0px_rgba(214,214,214,0),0px_7px_3px_0px_rgba(214,214,214,0.01),0px_4px_2px_0px_rgba(214,214,214,0.05),0px_2px_2px_0px_rgba(214,214,214,0.09),0px_0px_1px_0px_rgba(214,214,214,0.1)]"
         data-name="HeaderMobile"
       >
-        <div className="flex items-center gap-2 px-4 pt-[52px]">
+        <div className="flex items-center gap-2 px-4 pt-3">
           <label className="flex h-11 min-w-0 flex-1 items-center gap-2 rounded-xl bg-secondary-light p-2">
             <img
               alt=""

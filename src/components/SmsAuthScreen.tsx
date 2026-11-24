@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import { StatusBar } from './StatusBar'
 
 type Props = {
   phone: string
@@ -55,9 +54,8 @@ export function SmsAuthScreen({ phone, onBack, onComplete }: Props) {
       data-node-id="613:14514"
       data-name="Login - SMS"
     >
-      <StatusBar tone="dark" />
 
-      <div className="relative z-10 flex h-[88px] shrink-0 items-end px-4 py-3">
+      <div className="relative z-10 flex h-11 shrink-0 items-end px-4 py-3">
         <button
           type="button"
           onClick={onBack}
@@ -120,7 +118,7 @@ export function SmsAuthScreen({ phone, onBack, onComplete }: Props) {
       </div>
 
       <div
-        className="shrink-0 bg-[rgba(204,206,211,0.76)] px-1.5 pb-[34px] pt-1.5 backdrop-blur-[10px]"
+        className="shrink-0 bg-[rgba(204,206,211,0.76)] px-1.5 pb-2 pt-1.5 backdrop-blur-[10px]"
         data-name="iOS Numeric Keyboard"
       >
         <div className="flex flex-col gap-[7px]">

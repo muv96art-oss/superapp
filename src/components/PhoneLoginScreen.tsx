@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
 import { assets } from '../assets'
-import { StatusBar } from './StatusBar'
 import { Switch } from './Switch'
 
 type Props = {
@@ -40,10 +39,9 @@ export function PhoneLoginScreen({ onClose, onContinue }: Props) {
       data-node-id="613:11228"
       data-name="Log in phone"
     >
-      <StatusBar tone="dark" />
 
       <div
-        className="relative z-10 flex h-[88px] shrink-0 items-end justify-end px-4 py-3"
+        className="relative z-10 flex h-11 shrink-0 items-end justify-end px-4 py-3"
         data-node-id="613:13619"
         data-name="Navbar"
       >

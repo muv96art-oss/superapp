@@ -1,5 +1,4 @@
 import { assets } from '../assets'
-import { StatusBar } from './StatusBar'
 
 type Props = {
   onBack: () => void
@@ -18,10 +17,7 @@ export function MarketTransitionScreen({ onBack, onContinue, onSecurityInfo }: P
       data-node-id="645:6802"
       data-name="Moby · Переход в WhiteBird"
     >
-      <StatusBar tone="light" />
 
-      {/* Status bar clearance 44px + nav 56px — Figma 645:6804 */}
-      <div className="h-[44px] shrink-0" aria-hidden />
       <div
         className="relative z-10 flex h-14 shrink-0 items-center px-4"
         data-node-id="645:6804"

@@ -334,7 +334,7 @@ export function HeroTop({
 
       {/* Fixed overlays — Figma 391:77341 / Variant4 698:30267 */}
       <div
-        className={`pointer-events-none absolute inset-0 z-10 flex flex-col items-center gap-6 pt-[46px] ${
+        className={`pointer-events-none absolute inset-0 z-10 flex flex-col items-center gap-6 pt-3 ${
           cardIssued ? 'pb-6' : ''
         }`}
       >

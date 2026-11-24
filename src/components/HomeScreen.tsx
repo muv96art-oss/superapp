@@ -5,7 +5,6 @@ import { HeroTop } from './HeroTop'
 import { ListingBanner } from './ListingBanner'
 import { ProductCard } from './ProductCard'
 import { PromoBlock } from './PromoBlock'
-import { StatusBar } from './StatusBar'
 
 const LISTING_BANNER_AFTER = 4
 
@@ -63,7 +62,6 @@ export const HomeScreen = forwardRef<HomeScreenHandle, Props>(function HomeScree
 
   return (
     <div className="relative h-full w-full overflow-hidden bg-bg-base">
-      <StatusBar tone="light" />
 
       <main
         ref={mainRef}
@@ -81,7 +79,7 @@ export const HomeScreen = forwardRef<HomeScreenHandle, Props>(function HomeScree
         />
 
         <section
-          className="relative z-10 flex flex-col gap-6 rounded-t-[36px] bg-surface-secondary px-5 pb-[34px]"
+          className="relative z-10 flex flex-col gap-6 rounded-t-[36px] bg-surface-secondary px-5 pb-5"
           data-node-id="391:76799"
           data-name="body"
         >

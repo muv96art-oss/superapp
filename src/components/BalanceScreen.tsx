@@ -10,7 +10,6 @@ import { BalancePremiumSheet } from './BalancePremiumSheet'
 import { BalanceRequisitesSection } from './BalanceRequisitesSection'
 import { BalanceStatusChip } from './BalanceStatusChip'
 import { BalanceTransferCard } from './BalanceTransferCard'
-import { StatusBar } from './StatusBar'
 
 type Props = {
   isLoggedIn: boolean
@@ -148,14 +147,10 @@ export function BalanceScreen({
       data-name="Каталог — Balance"
       data-phase={phase}
     >
-      <div className="absolute inset-x-0 top-0 z-20">
-        <StatusBar tone="dark" />
-      </div>
-
       <main className="flex min-h-0 flex-1 flex-col overflow-hidden pb-[96px]">
         {/* Top — fixed; page scrolls below — Figma 667:9037 */}
         <header
-          className="relative z-20 flex shrink-0 flex-col items-center rounded-bl-[36px] rounded-br-[36px] bg-surface-secondary px-8 pt-[50px] pb-3"
+          className="relative z-20 flex shrink-0 flex-col items-center rounded-bl-[36px] rounded-br-[36px] bg-surface-secondary px-8 pt-3 pb-3"
           data-node-id="667:9037"
           data-name="Top"
         >

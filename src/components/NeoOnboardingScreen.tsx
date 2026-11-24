@@ -1,5 +1,4 @@
 import { assets } from '../assets'
-import { StatusBar } from './StatusBar'
 
 type Props = {
   onDismiss: () => void
@@ -24,7 +23,6 @@ export function NeoOnboardingScreen({ onDismiss }: Props) {
       data-node-id="613:15590"
       data-name="Ondoarding 13 & 14 - 6"
     >
-      <StatusBar tone="light" />
 
       {/* Full-bleed promo art — Figma 613:15598 */}
       <div
@@ -105,7 +103,7 @@ export function NeoOnboardingScreen({ onDismiss }: Props) {
 
       {/* Navbar — close only */}
       <div
-        className="absolute inset-x-0 top-0 z-10 flex h-[88px] items-end justify-end px-4 py-3"
+        className="absolute inset-x-0 top-0 z-10 flex h-11 items-end justify-end px-4 py-3"
         data-node-id="613:15591"
         data-name="Navbar"
       >
@@ -115,7 +113,7 @@ export function NeoOnboardingScreen({ onDismiss }: Props) {
       </div>
 
       {/* CTA — bottom-anchored, 44px from screen edge; stretch width, keep h-11 */}
-      <div className="absolute inset-x-0 bottom-0 z-10 flex flex-col items-stretch px-8 pb-[44px]">
+      <div className="absolute inset-x-0 bottom-0 z-10 flex flex-col items-stretch px-8 pb-6">
         <div
           className="mb-4 flex w-full flex-col items-center gap-3"
           data-node-id="613:15593"

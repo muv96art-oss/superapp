@@ -213,7 +213,6 @@ export function LoginBottomSheet({ open, onClose, onLoginMoby }: Props) {
           </div>
         </div>
 
-        <div className="h-[34px] w-full shrink-0" aria-hidden="true" data-node-id="613:11168" />
       </div>
     </div>
   )

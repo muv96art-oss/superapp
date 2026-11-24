@@ -9,7 +9,6 @@ import {
 import { BadgeMarketing } from './badges'
 import { PaymentMethods, type PaymentSummary } from './PaymentMethods'
 import { SiteFooter } from './SiteFooter'
-import { StatusBar } from './StatusBar'
 
 type Props = {
   cart: Record<string, number>
@@ -73,10 +72,6 @@ export function CartScreen({
   if (empty) {
     return (
       <div className="relative flex h-full w-full flex-col overflow-hidden bg-bg-base" data-node-id="532:35393" data-name="Корзина — пусто">
-        <div className="relative shrink-0 rounded-b-[20px] bg-bg-base pb-4 shadow-[0px_10px_3px_0px_rgba(214,214,214,0),0px_7px_3px_0px_rgba(214,214,214,0.01),0px_4px_2px_0px_rgba(214,214,214,0.05),0px_2px_2px_0px_rgba(214,214,214,0.09),0px_0px_1px_0px_rgba(214,214,214,0.1)]">
-          <StatusBar />
-          <div className="h-[46px]" />
-        </div>
         <main ref={mainRef} className="min-h-0 flex-1 overflow-x-hidden overflow-y-auto overscroll-y-contain pb-[98px] scrollbar-hide">
           <div className="flex min-h-full flex-col gap-6 px-4 pt-6">
           <h1 className="font-montserrat text-[28px] font-bold leading-[34px] tracking-[-0.28px] text-text-primary">
@@ -117,10 +112,7 @@ export function CartScreen({
 
   return (
     <div className="relative flex h-full w-full flex-col overflow-hidden bg-bg-base" data-node-id="525:34951" data-name="Корзина — 375">
-      <div className="pointer-events-none absolute inset-x-0 top-0 z-40 h-[46px] rounded-b-[20px] bg-bg-base" aria-hidden="true" />
-      <StatusBar />
-
-      <main ref={mainRef} className="min-h-0 flex-1 overflow-x-hidden overflow-y-auto overscroll-y-contain px-4 pb-[260px] pt-[70px] scrollbar-hide">
+      <main ref={mainRef} className="min-h-0 flex-1 overflow-x-hidden overflow-y-auto overscroll-y-contain px-4 pb-[260px] pt-4 scrollbar-hide">
         <div className="flex items-center justify-between" data-node-id="525:34954">
           <h1 className="flex items-center gap-3 font-montserrat text-[28px] font-bold leading-[34px] tracking-[-0.28px]">
             <span className="text-text-primary">Корзина</span>

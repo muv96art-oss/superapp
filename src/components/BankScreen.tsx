@@ -1,6 +1,5 @@
 import type { ReactNode } from 'react'
 import { assets } from '../assets'
-import { StatusBar } from './StatusBar'
 
 type Props = {
   onOpenMarket: () => void
@@ -18,10 +17,6 @@ export function BankScreen({ onOpenMarket, onToast, toast: toastMessage }: Props
       data-node-id="313:36319"
       data-name="Home page"
     >
-      <div className="absolute inset-x-0 top-0 z-20">
-        <StatusBar tone="light" />
-      </div>
-
       <main className="min-h-0 flex-1 overflow-x-hidden overflow-y-auto overscroll-y-contain pb-[96px] scrollbar-hide">
         <BankTop onToast={toast} />
 
@@ -110,7 +105,7 @@ function BankTop({ onToast }: { onToast: (message: string) => void }) {
   return (
     <div className="relative isolate flex flex-col" data-node-id="313:36321" data-name="Top">
       <div
-        className="relative z-[2] flex flex-col items-center gap-6 rounded-b-[40px] bg-gradient-to-b from-[#0a54c2] from-[13%] to-[#5696f6] px-8 pt-16 pb-8"
+        className="relative z-[2] flex flex-col items-center gap-6 rounded-b-[40px] bg-gradient-to-b from-[#0a54c2] from-[13%] to-[#5696f6] px-8 pt-3 pb-8"
         data-node-id="313:36322"
       >
         <div className="flex h-10 w-full items-center gap-2">
@@ -322,13 +317,7 @@ function BelkartWidget() {
         <span className="flex h-6 items-end rounded-lg bg-[#e0edff] px-2 py-1">
           <img alt="" src={assets.bankBelkartLogo} width={72} height={16} className="h-4 w-[72px]" />
         </span>
-        <img
-          alt=""
-          src={assets.bankBelkartPhone}
-          width={16}
-          height={16}
-          className="ml-auto size-4"
-        />
+        <img alt="" src={assets.bankBelkartPhone} width={16} height={16} className="size-4" />
       </div>
     </div>
   )
@@ -432,13 +421,7 @@ function HalvaWidget() {
             <span className="flex h-6 items-center rounded-lg bg-[#e0edff] px-2">
               <img alt="" src={assets.bankHalvaVisa} width={30} height={10} className="h-2.5 w-[30px]" />
             </span>
-            <img
-              alt=""
-              src={assets.bankHalvaPhone}
-              width={16}
-              height={16}
-              className="ml-auto size-4"
-            />
+            <img alt="" src={assets.bankHalvaPhone} width={16} height={16} className="size-4" />
           </div>
         </div>
       </div>
@@ -505,7 +488,6 @@ function BankTabBar({
           onClick={() => onToast('Ещё')}
         />
       </div>
-      <div className="h-[34px] w-full shrink-0" aria-hidden="true" />
     </nav>
   )
 }

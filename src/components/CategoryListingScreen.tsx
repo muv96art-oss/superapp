@@ -3,7 +3,6 @@ import { assets } from '../assets'
 import { getCategoryListing, type ListingCategoryId } from '../data'
 import { SiteFooter } from './SiteFooter'
 import { ProductCard } from './ProductCard'
-import { StatusBar } from './StatusBar'
 import { FiltersScreen } from './FiltersScreen'
 import { Switch } from './Switch'
 
@@ -69,14 +68,13 @@ export function CategoryListingScreen({
       data-node-id="458:113474"
       data-name="Листинг - 1921"
     >
-      <StatusBar />
 
       <header
         className="relative z-20 shrink-0 rounded-b-[20px] bg-bg-base pb-4 shadow-[0px_10px_3px_0px_rgba(214,214,214,0),0px_7px_3px_0px_rgba(214,214,214,0.01),0px_4px_2px_0px_rgba(214,214,214,0.05),0px_2px_2px_0px_rgba(214,214,214,0.09),0px_0px_1px_0px_rgba(214,214,214,0.1)]"
         data-node-id="458:113519"
         data-name="HeaderMobile"
       >
-        <div className="flex flex-col gap-3 px-4 pt-[52px]">
+        <div className="flex flex-col gap-3 px-4 pt-3">
           <button
             type="button"
             onClick={onOpenSearch}

@@ -26,6 +26,9 @@ export function BalanceMarketplaceCard({
   aspectWidth = 311,
   aspectHeight = 187,
 }: Props) {
+  /** Figma strip 14px on design height — scale with fluid aspect, not fixed px */
+  const stripHeightPct = (14 / aspectHeight) * 100
+
   return (
     <div
       className={['relative w-full overflow-hidden rounded-[24px]', className]
@@ -35,19 +38,23 @@ export function BalanceMarketplaceCard({
       data-node-id="672:9410"
       data-name="Card"
     >
-      <div aria-hidden className="pointer-events-none absolute inset-0 rounded-[24px]">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 overflow-hidden rounded-[24px]"
+      >
         <div className="absolute inset-0 rounded-[24px] bg-white" />
-              <SafeShaderFill
-                className="absolute inset-0 rounded-[24px] opacity-40"
-                width={aspectWidth}
-                height={aspectHeight}
-                shader={{
-                  setup: meshSetup,
-                  render: meshRender,
-                  params: halvaCardMeshParams,
-                  manifest: meshManifest,
-                }}
-              />
+        <SafeShaderFill
+          /* ShaderFill sets inline px size from width/height — force fill fluid card */
+          className="!absolute !inset-0 !h-full !w-full !max-w-none overflow-hidden rounded-[24px] opacity-40"
+          width={aspectWidth}
+          height={aspectHeight}
+          shader={{
+            setup: meshSetup,
+            render: meshRender,
+            params: halvaCardMeshParams,
+            manifest: meshManifest,
+          }}
+        />
       </div>
 
       <img
@@ -58,7 +65,8 @@ export function BalanceMarketplaceCard({
       />
 
       <div
-        className="absolute inset-x-0 bottom-0 h-[14px] bg-gradient-to-r from-[#7c36d6] to-[#e4b3ff]"
+        className="absolute inset-x-0 bottom-0 w-full rounded-b-[24px] bg-gradient-to-r from-[#7c36d6] to-[#e4b3ff]"
+        style={{ height: `${stripHeightPct}%` }}
         data-node-id="672:9412"
       />
 

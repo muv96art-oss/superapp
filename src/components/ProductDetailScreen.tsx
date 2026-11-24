@@ -8,7 +8,6 @@ import { PdpCreditTipsBanner } from './PdpCreditTipsBanner'
 import { ProductCard } from './ProductCard'
 import { ProductDetailsSheet } from './ProductDetailsSheet'
 import { SiteFooter } from './SiteFooter'
-import { StatusBar } from './StatusBar'
 
 type Props = {
   productId: string
@@ -61,13 +60,12 @@ export function ProductDetailScreen({
       data-node-id="569:6849"
       data-name="Страница товара — 375 / Moby"
     >
-      <StatusBar />
 
       <header
         className="relative z-20 shrink-0 rounded-b-[20px] bg-bg-base pb-4 shadow-[0px_10px_3px_0px_rgba(214,214,214,0),0px_7px_3px_0px_rgba(214,214,214,0.01),0px_4px_2px_0px_rgba(214,214,214,0.05),0px_2px_2px_0px_rgba(214,214,214,0.09),0px_0px_1px_0px_rgba(214,214,214,0.1)]"
         data-name="HeaderMobile"
       >
-        <div className="flex flex-col gap-3 px-4 pt-[52px]">
+        <div className="flex flex-col gap-3 px-4 pt-3">
           <div className="flex items-center gap-2">
             <button
               type="button"
@@ -442,7 +440,6 @@ export function ProductDetailScreen({
             </button>
           </div>
         )}
-        <div className="h-[34px] w-full shrink-0" aria-hidden="true" />
       </div>
 
       {detailsMounted ? (

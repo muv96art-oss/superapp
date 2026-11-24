@@ -1,7 +1,6 @@
 import { useState, type ReactNode } from 'react'
 import { assets } from '../assets'
 import { BalanceMarketplaceCard } from './BalanceMarketplaceCard'
-import { StatusBar } from './StatusBar'
 
 type Props = {
   onBack: () => void
@@ -43,10 +42,8 @@ export function CardApplicationScreen({
       data-node-id="716:12621"
       data-name="8.1"
     >
-      <StatusBar tone="dark" />
 
       <div className="flex shrink-0 flex-col" data-node-id="716:12622" data-name="Top">
-        <div className="h-11 shrink-0" aria-hidden />
         <div
           className="flex h-11 items-end px-4 py-3"
           data-node-id="716:12814"
@@ -133,7 +130,7 @@ export function CardApplicationScreen({
               Прошу открыть счет и подтверждаю, что ознакомлен(-а) и согласен(-а) с{' '}
               <button
                 type="button"
-                className="text-fill-brand"
+                className="inline p-0 text-left font-inherit text-[length:inherit] leading-[inherit] text-fill-brand"
                 onClick={() =>
                   onToast?.('Договор об использовании банковской платежной карточки')
                 }
@@ -151,7 +148,7 @@ export function CardApplicationScreen({
               третьих лиц, а также ознакомлен(-а) с Памяткой{' '}
               <button
                 type="button"
-                className="text-fill-brand"
+                className="inline p-0 text-left font-inherit text-[length:inherit] leading-[inherit] text-fill-brand"
                 onClick={() => onToast?.('Памятка «О действиях мошенников»')}
               >
                 «О действиях мошенников»
@@ -183,7 +180,6 @@ export function CardApplicationScreen({
             </span>
           </button>
         </div>
-        <div className="h-[34px] w-full shrink-0" aria-hidden data-node-id="716:12810" />
       </div>
     </div>
   )

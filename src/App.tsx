@@ -6,7 +6,6 @@ import { CardApplicationScreen } from './components/CardApplicationScreen'
 import { CartScreen } from './components/CartScreen'
 import { CatalogScreen, type CatalogScreenHandle } from './components/CatalogScreen'
 import { CategoryListingScreen } from './components/CategoryListingScreen'
-import { HomeIndicator } from './components/HomeIndicator'
 import { HomeScreen, type HomeScreenHandle } from './components/HomeScreen'
 import { LoginBottomSheet } from './components/LoginBottomSheet'
 import { MarketTransitionScreen } from './components/MarketTransitionScreen'
@@ -463,9 +462,6 @@ export default function App() {
         {authView === 'onboarding' ? (
           <NeoOnboardingScreen onDismiss={finishOnboarding} />
         ) : null}
-
-        {/* Above auth overlays (z-70/80) — Figma 613:13747 on login/registration */}
-        <HomeIndicator className="absolute inset-x-0 bottom-0 z-[90]" />
       </div>
     </div>
   )
