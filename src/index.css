@@ -74,27 +74,6 @@ body {
   }
 }
 
-/*
-  Design canvas 375px. Scale is applied via inline styles from App
-  (Lightning/Tailwind drops calc() in transform). From md: no scale.
-*/
-.app-phone-scale {
-  position: relative;
-  width: 375px;
-  height: 100dvh;
-  overflow: hidden;
-  background: var(--color-bg-base, #fff);
-  transform-origin: top left;
-}
-
-@media (min-width: 768px) {
-  .app-phone-scale {
-    transform: none !important;
-    height: 100dvh !important;
-    box-shadow: 0 0 40px rgba(0, 0, 0, 0.12);
-  }
-}
-
 button,
 a,
 summary,

@@ -15,9 +15,9 @@ Web-прототип Super App (банк + маркет). Визуальный �
 - Done (Observed, 2026-11-24): Safari blank — `SafeShaderFill` + `AppErrorBoundary`; Vite target `safari14`; коммит `efc630b`.
 - Done (Observed, 2026-11-24): мобильный full-bleed — рамка `max-w-[375px]` + серый фон `#e8eaed` **только от `md` (768px)**; на телефоне без gutters. Body bg white на mobile. Коммит `0f7850d`.
 - Verified (2026-11-24): пользователь подтвердил на телефоне — серых полей нет, full-bleed ок после `0f7850d`.
-- Done (Observed, 2026-11-24, локально): proportional shell — layout в 375px + `scale(viewport/375)` на mobile (`useDesignScale`); на 430px verified в browser (rect 430×932, категории logical ~161×142). Ждёт ok на телефоне / deploy.
+- Reverted (2026-11-24): shell `transform: scale` убран — увеличивал шрифты визуально; токены/`text-[Npx]` снова 1:1 на устройстве.
 - Verified (Observed ранее): Halva Home → страница; submit → Halva скрыта; Balance virtual (Premium banner + «Выпускаем карту…»).
-- Not verified / Unverified: ok пропорционального scale на реальном Safari; финальный ok Premium БШ / CardApplication / 4 состояниям Balance / Home Variant4; Halva hero; `MarketTransitionScreen`.
+- Not verified / Unverified: пропорции блоков на >375 без scale (нужен aspect-ratio по компонентам, не scale текста); Premium БШ / CardApplication / Balance / Halva / MarketTransition.
 
 ## Decisions
 - Платформа Web. React, TypeScript, Tailwind CSS v4, Vite. — Approved — `package.json`.
@@ -39,7 +39,7 @@ Web-прототип Super App (банк + маркет). Визуальный �
   - `cardIssued=false` → HeroTop `391:77341` / h=`530` + Halva `654:8738` + карта `680:9932`.
   - `cardIssued=true` → HeroTop Variant4 `698:30267` / h=`420`, Halva **скрыта**.
 - Промо NEO / Home Indicator `z-[90]` — Approved + Locked (см. Locked UI).
-- Десктоп: phone-frame 375 + серый canvas. Мобильный: full-bleed **и** uniform scale от design canvas 375 (`scale = viewportWidth/375`) — пропорции как у 375×812, без горизонтального «растягивания» фиксированных px. — Observed intent 2026-11-24 (пользователь) / реализация `useDesignScale` + `.app-phone-scale` в `App.tsx` / `index.css`.
+- Десктоп: phone-frame `md:max-w-[375px]` + серый canvas; мобильный: full-bleed без gutters. — Observed (fix 2026-11-24). Шрифты — как в токенах / Figma px, **без** shell `transform: scale` (откатили 2026-11-24 по запросу пользователя).
 
 ## Constraints
 - Контент и стили из Figma; конфликт с утверждённым UI — спросить. — Approved.
@@ -64,7 +64,8 @@ Web-прототип Super App (банк + маркет). Визуальный �
 
 ## Open work
 - [x] Mobile full-bleed после `0f7850d` — ok пользователя (2026-11-24).
-- [ ] **Следующий шаг:** на телефоне (прод после push) проверить proportional scale: Home / Balance / Bank / CardApplication — пропорции как на 375×812.
+- [ ] **Следующий шаг:** пропорции на >375 **без** scale шрифтов — через `aspect-ratio`/высоты по ширине у растягиваемых блоков (баннеры, категории, карты); шрифты не трогать.
+- [x] Shell scale откатили — шрифты снова как в токенах (2026-11-24).
 - [ ] Визуальный ok / правки по `CardApplicationScreen` (`716:12621`) и входам (Halva / PDP / Balance).
 - [ ] Визуальный ok / правки по Premium БШ (`716:12084`).
 - [ ] Визуальный ok пользователя по связке Balance issue → Home Variant4 (`698:30267`) и по 4 состояниям Balance.
@@ -84,8 +85,7 @@ Web-прототип Super App (банк + маркет). Визуальный �
 - Close-анимация БШ при `open=false` (как у `LoginBottomSheet`): unmount через rAF без гарантированного slide-down — Observed / Unverified polish.
 - ShaderFill (mesh) на карте требует WebGPU; без него / при ошибке — `SafeShaderFill` fallback (не blank). — Observed — `SafeShaderFill` / Safari fix `efc630b`.
 - Серые gutters на телефонах >430 CSS px — исправлено в `0f7850d`; визуальный ok на устройстве подтверждён (2026-11-24).
-- После full-bleed без scale: на ширине >375 фиксированные px тянулись по ширине (банеры/категории/карточки). Fix: uniform `transform: scale(width/375)` на оболочке — Unverified на реальном Safari до ok пользователя.
-- Lightning/Tailwind отбрасывает `calc(100vw/375)` в CSS `transform` — scale задаётся inline из JS (`useDesignScale`). — Observed.
+- На ширине >375 фиксированные высоты тянут блоки по ширине (банеры/категории). Shell scale откатили (ломал размер шрифтов vs токены). Нужен per-component aspect-ratio. — Observed.
 
 ## Do not redo
 - Не трогать NEO / Tabs Mode / `pb-[44px]` CTA без запроса.
@@ -100,11 +100,11 @@ Web-прототип Super App (банк + маркет). Визуальный �
 - Не возвращать прямой `goPremium` с `BalancePremiumBanner` в обход БШ без явного разрешения.
 - Не возвращать прямой `issueCard` → `virtual` с баннера/кнопки в обход `CardApplicationScreen` без явного разрешения.
 - Не возвращать постоянный `max-w-[375px]` на мобильных (серые gutters) без явного разрешения — mobile full-bleed от `0f7850d`.
-- Не убирать uniform scale от 375 на мобильных без явного разрешения (иначе снова «растянутые» пропорции).
+- Не вводить shell `transform: scale` снова — увеличивает шрифты относительно токенов. — Approved intent 2026-11-24.
 - Не пересматривать Decisions / Locked UI без явного разрешения пользователя.
 
 ## Key files
-- Shell layout: `src/App.tsx` (`useDesignScale`, `.app-phone-scale`), `src/index.css` (body bg + shell base)
+- Shell layout: `src/App.tsx` (md phone-frame / mobile full-bleed), `src/index.css` (body bg)
 - Safari safety: `SafeShaderFill` (если есть), `AppErrorBoundary`
 - Card application: `CardApplicationScreen.tsx`, `App.tsx` (`cardApplicationOpen`, `openCardApplication`, `submitCardApplication`), `public/assets/card-application/back.svg`
 - Entry wiring: `HeroTop.tsx` (Halva), `PdpCreditTipsBanner.tsx`, `ProductDetailScreen.tsx` (Halva `585:8582`), `BalanceScreen.tsx` (`onRequestIssue`, `cardIssued`)
