@@ -1,0 +1,108 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-inter: 'Inter', system-ui, sans-serif;
+  --font-montserrat: 'Montserrat', system-ui, sans-serif;
+  --font-onest: 'Onest', system-ui, sans-serif;
+  --font-rubik-mono: 'Rubik Mono One', 'Inter', system-ui, sans-serif;
+
+  --color-text-primary: #0d0e0f;
+  --color-text-secondary: #696e77;
+  --color-text-inverted: #ffffff;
+  --color-bg-base: #ffffff;
+  --color-surface-secondary: #f9f9fa;
+  --color-surface-brand: #1b74fd;
+  --color-fill-brand: #1b74fd;
+  --color-fill-brand-loud: #0b2e65;
+  --color-fill-accent-red: #b0262b;
+  --color-fill-secondary: #d1e3ff;
+  --color-orange-50: #fffaf2;
+  --color-search-bg: rgba(249, 249, 250, 0.92);
+
+  /* cartStepper — Figma 2150:57161 */
+  --color-brand-primary: #412d4e;
+  --color-brand-primary-light: #d5d1d7;
+  --color-static-violet: #9b51e0;
+  --color-secondary-light: #f5f5f8;
+  --color-basic-primary: #242731;
+  --color-basic-secondary: #797678;
+  --color-static-beige: #f7e0be;
+  --color-static-red: #f53b46;
+  --color-static-black: #000000;
+  --color-static-white: #ffffff;
+  --color-static-green: #34a853;
+  --color-static-orange: #ff8a00;
+  --color-static-dark-violet: #382673;
+  --color-static-light-blue: #ddddf8;
+  --color-static-blue: #2f80ed;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+@supports (height: 100dvh) {
+  html,
+  body,
+  #root {
+    height: 100dvh;
+  }
+}
+
+body {
+  font-family: var(--font-inter);
+  background: #e8eaed;
+  color: var(--color-text-primary);
+  -webkit-font-smoothing: antialiased;
+  overscroll-behavior: none;
+}
+
+button,
+a,
+summary,
+label,
+[role='button'] {
+  cursor: pointer;
+}
+
+button:disabled,
+[aria-disabled='true'] {
+  cursor: not-allowed;
+}
+
+:focus-visible {
+  outline: 2px solid #1b74fd;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
