@@ -81,9 +81,8 @@ Web-прототип Super App (банк + маркет). Визуальный �
 - HANDOFF может быть чуть впереди tip после post-push update — Observed.
 - PhoneLogin `pt-[82px]` / SmsAuth content `pt-[40px]` / PDP recommended `pt-[72px]` — design spacing (не status leftover); не трогать без запроса. — Observed.
 - ShaderFill всё ещё пишет inline `width/height` design px; fluid cards должны форсить `!w-full !h-full` (как в `BalanceMarketplaceCard`). — Observed.
-- Balance overlap/animation + CardApplication 44px — на origin после push; визуальный ok Unverified. — Observed.
-- Cart gap Method_Tabs/section — на origin после push; визуальный ok Unverified. — Observed.
-- Last pushed commit / SHA — обновить после push. — Observed.
+- Balance overlap/animation + CardApplication 44px — pushed `bb48397`; визуальный ok Unverified. — Observed.
+- Cart gap Method_Tabs/section — pushed `bb48397`; визуальный ok Unverified. — Observed.
 
 ## Do not redo
 - Не возвращать mock StatusBar / Home Indicator без явного разрешения.
@@ -100,4 +99,4 @@ Web-прототип Super App (банк + маркет). Визуальный �
 - Chrome removal (local): deleted `StatusBar.tsx` / `HomeIndicator.tsx`; top/bottom paddings на Balance, Bank, Catalog, Cart, PDP, Search, auth, sheets, HeroTop, Neo
 - Card application / Balance / Home: `CardApplicationScreen.tsx`, `BalanceScreen.tsx`, `HeroTop.tsx`, `App.tsx` (`cardIssued`)
 - Deploy: `vercel.json`, GitHub `muv96art-oss/superapp`, branch `main`
-- Last pushed commit: (обновить SHA после push Balance overlap / CardApplication inset / Cart gaps)
+- Last pushed commit: `bb48397` (Balance overlap/animation + CardApplication 44px + Cart gaps)
