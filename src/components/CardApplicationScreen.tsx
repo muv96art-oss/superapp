@@ -89,7 +89,8 @@ export function CardApplicationScreen({
             </p>
           </div>
 
-          <div data-node-id="716:12796" data-name="Card" className="w-full shrink-0">
+          {/* Figma 716:12796 — card x=44 on 375 → 44px inset; parent already px-4 */}
+          <div data-node-id="716:12796" data-name="Card" className="w-full shrink-0 px-[28px]">
             <BalanceMarketplaceCard aspectWidth={287} aspectHeight={173} />
           </div>
 

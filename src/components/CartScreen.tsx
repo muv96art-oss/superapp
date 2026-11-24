@@ -144,7 +144,7 @@ export function CartScreen({
           </ul>
 
         <div className="mt-8 flex flex-col gap-6" data-node-id="525:34965">
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-4">
             <div className="flex gap-2" data-name="Method_Tabs">
               <button
                 type="button"

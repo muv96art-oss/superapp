@@ -56,11 +56,12 @@ Web-прототип Super App (банк + маркет). Визуальный �
 - Premium entry через БШ; Card issue entry через `CardApplicationScreen` — не откатывать на прямые jumps.
 
 ## Open work
-- [x] Три бага CardApplication/chrome + bank badge icons — pushed `28303d5` (2026-11-24).
-- [ ] **Следующий шаг:** визуальный ok на проде после деплоя `28303d5` (CardApplication, Bank badges, top insets).
-- [x] Mobile full-bleed `0f7850d` — ok (2026-11-24).
-- [x] Fluid width `711e8e2` — в коде; визуальный ok ещё нужен.
-- [x] StatusBar + HI убраны — в `28303d5` на `main`.
+- [x] Три бага CardApplication/chrome + bank badge icons — pushed `28303d5` / HANDOFF `c74656d`.
+- [x] Cart Method_Tabs gap-2 (8px) + section gap-4 (16px) — pushed (Observed 2026-11-24).
+- [x] Balance card overlap + open animation + CardApplication 44px inset — pushed (Observed 2026-11-24):
+  - `CardApplicationScreen`: card wrapper `px-[28px]` (+ parent `px-4` → **44px** к краям, Figma `716:12796` x=44).
+  - `BalanceScreen`: карта `z-10`; info sheet `-mt-[84px] pt-[100px]` collapsed / `-mt-6 pt-8` expanded (Figma `687:6573` overlap); Tabs через `grid-rows` transition 300ms.
+- [ ] **Следующий шаг:** визуальный ok на проде (Balance virtual overlap + expand animation + CardApplication scale + Cart gaps).
 - [ ] Визуальный ok / правки Premium БШ (`716:12084`).
 - [ ] Визуальный ok Balance issue → Home Variant4 и 4 состояний Balance.
 - [ ] Halva hero (default): финальный ok.
@@ -80,6 +81,9 @@ Web-прототип Super App (банк + маркет). Визуальный �
 - HANDOFF может быть чуть впереди tip после post-push update — Observed.
 - PhoneLogin `pt-[82px]` / SmsAuth content `pt-[40px]` / PDP recommended `pt-[72px]` — design spacing (не status leftover); не трогать без запроса. — Observed.
 - ShaderFill всё ещё пишет inline `width/height` design px; fluid cards должны форсить `!w-full !h-full` (как в `BalanceMarketplaceCard`). — Observed.
+- Balance overlap/animation + CardApplication 44px — на origin после push; визуальный ok Unverified. — Observed.
+- Cart gap Method_Tabs/section — на origin после push; визуальный ok Unverified. — Observed.
+- Last pushed commit / SHA — обновить после push. — Observed.
 
 ## Do not redo
 - Не возвращать mock StatusBar / Home Indicator без явного разрешения.
@@ -96,4 +100,4 @@ Web-прототип Super App (банк + маркет). Визуальный �
 - Chrome removal (local): deleted `StatusBar.tsx` / `HomeIndicator.tsx`; top/bottom paddings на Balance, Bank, Catalog, Cart, PDP, Search, auth, sheets, HeroTop, Neo
 - Card application / Balance / Home: `CardApplicationScreen.tsx`, `BalanceScreen.tsx`, `HeroTop.tsx`, `App.tsx` (`cardIssued`)
 - Deploy: `vercel.json`, GitHub `muv96art-oss/superapp`, branch `main`
-- Last pushed commit: `28303d5` (chrome + CardApplication + bank badge icons)
+- Last pushed commit: (обновить SHA после push Balance overlap / CardApplication inset / Cart gaps)

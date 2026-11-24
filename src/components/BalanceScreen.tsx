@@ -219,8 +219,9 @@ export function BalanceScreen({
           data-node-id="679:9843"
           data-name="Card"
         >
+          {/* Card above sheet — Figma 687:6573 overlap: info y=131 vs card bottom ~215 */}
           <div
-            className="flex flex-col items-center gap-6 px-0 pt-6 pb-2"
+            className="relative z-10 flex flex-col items-center px-0 pt-6"
             data-node-id="679:9844"
             data-name="card"
           >
@@ -239,7 +240,7 @@ export function BalanceScreen({
                       ? 'Скрыть действия карты'
                       : 'Показать карту и действия'
                   }
-                  className="relative z-0 w-full cursor-pointer"
+                  className="relative w-full cursor-pointer"
                 >
                   <BalanceMarketplaceCard balance="00.00" />
                 </button>
@@ -254,43 +255,50 @@ export function BalanceScreen({
               )}
             </div>
 
-            {sheetExpanded ? (
-              <div
-                className="flex w-full items-center justify-center gap-6"
-                data-node-id="679:9846"
-                data-name="Tabs"
-              >
-                {ACTIONS.map((action) => (
-                  <button
-                    key={action.id}
-                    type="button"
-                    onClick={() => toast(action.label)}
-                    className="flex flex-col items-center justify-center gap-1 rounded-xl bg-[rgba(249,249,250,0.92)] p-2"
-                    data-node-id={action.nodeId}
-                    data-name="tab"
-                  >
-                    <span className="relative flex size-8 items-center justify-center">
-                      <img
-                        alt=""
-                        src={action.icon}
-                        width={action.id === 'pay' ? 16 : 32}
-                        height={action.id === 'pay' ? 20 : 32}
-                        className={
-                          action.id === 'pay' ? 'h-5 w-4 object-contain' : 'size-8 max-w-none'
-                        }
-                      />
-                    </span>
-                    <span className="whitespace-nowrap text-[12px] leading-4 text-text-primary">
-                      {action.label}
-                    </span>
-                  </button>
-                ))}
+            <div
+              className={`grid w-full transition-[grid-template-rows] duration-300 ease-out motion-reduce:transition-none ${
+                sheetExpanded ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'
+              }`}
+              data-node-id="679:9846"
+              data-name="Tabs"
+            >
+              <div className="min-h-0 overflow-hidden">
+                <div className="flex w-full items-center justify-center gap-6 px-8 pt-6 pb-2">
+                  {ACTIONS.map((action) => (
+                    <button
+                      key={action.id}
+                      type="button"
+                      onClick={() => toast(action.label)}
+                      tabIndex={sheetExpanded ? 0 : -1}
+                      className="flex flex-col items-center justify-center gap-1 rounded-xl bg-[rgba(249,249,250,0.92)] p-2"
+                      data-node-id={action.nodeId}
+                      data-name="tab"
+                    >
+                      <span className="relative flex size-8 items-center justify-center">
+                        <img
+                          alt=""
+                          src={action.icon}
+                          width={action.id === 'pay' ? 16 : 32}
+                          height={action.id === 'pay' ? 20 : 32}
+                          className={
+                            action.id === 'pay' ? 'h-5 w-4 object-contain' : 'size-8 max-w-none'
+                          }
+                        />
+                      </span>
+                      <span className="whitespace-nowrap text-[12px] leading-4 text-text-primary">
+                        {action.label}
+                      </span>
+                    </button>
+                  ))}
+                </div>
               </div>
-            ) : null}
+            </div>
           </div>
 
           <div
-            className="flex flex-col items-center gap-6 rounded-tl-[36px] rounded-tr-[36px] bg-surface-secondary px-6 py-8 shadow-[0px_-3px_14px_rgba(0,0,0,0.07)]"
+            className={`relative z-0 flex flex-col items-center gap-6 rounded-tl-[36px] rounded-tr-[36px] bg-surface-secondary px-6 pb-8 shadow-[0px_-3px_14px_rgba(0,0,0,0.07)] transition-[margin,padding] duration-300 ease-out motion-reduce:transition-none ${
+              sheetExpanded ? '-mt-6 pt-8' : '-mt-[84px] pt-[100px]'
+            }`}
             data-node-id="679:9859"
             data-name="info"
           >
