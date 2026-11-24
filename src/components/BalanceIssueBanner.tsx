@@ -1,4 +1,3 @@
-import { ShaderFill } from '@figma/expressive-components'
 import { assets } from '../assets'
 import {
   halvaCardMeshParams,
@@ -6,6 +5,7 @@ import {
   render as meshRender,
   setup as meshSetup,
 } from '../lib/meshGradientShader'
+import { SafeShaderFill } from './SafeShaderFill'
 
 type Props = {
   onClick?: () => void
@@ -44,7 +44,7 @@ export function BalanceIssueBanner({ onClick }: Props) {
           >
             <div aria-hidden className="pointer-events-none absolute inset-0 rounded-[8.521px]">
               <div className="absolute inset-0 rounded-[8.521px] bg-white" />
-              <ShaderFill
+              <SafeShaderFill
                 className="absolute inset-0 rounded-[8.521px] opacity-40"
                 width={102}
                 height={61}

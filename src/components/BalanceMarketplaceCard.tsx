@@ -1,4 +1,3 @@
-import { ShaderFill } from '@figma/expressive-components'
 import { assets } from '../assets'
 import {
   halvaCardMeshParams,
@@ -6,6 +5,7 @@ import {
   render as meshRender,
   setup as meshSetup,
 } from '../lib/meshGradientShader'
+import { SafeShaderFill } from './SafeShaderFill'
 
 type Props = {
   /** When set — Figma Variant3 balance (672:9429); omit for unissued + issue CTA overlay */
@@ -34,17 +34,17 @@ export function BalanceMarketplaceCard({
     >
       <div aria-hidden className="pointer-events-none absolute inset-0 rounded-[24px]">
         <div className="absolute inset-0 rounded-[24px] bg-white" />
-        <ShaderFill
-          className="absolute inset-0 rounded-[24px] opacity-40"
-          width={width}
-          height={height}
-          shader={{
-            setup: meshSetup,
-            render: meshRender,
-            params: halvaCardMeshParams,
-            manifest: meshManifest,
-          }}
-        />
+              <SafeShaderFill
+                className="absolute inset-0 rounded-[24px] opacity-40"
+                width={width}
+                height={height}
+                shader={{
+                  setup: meshSetup,
+                  render: meshRender,
+                  params: halvaCardMeshParams,
+                  manifest: meshManifest,
+                }}
+              />
       </div>
 
       <img
